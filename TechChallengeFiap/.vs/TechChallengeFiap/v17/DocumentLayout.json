@@ -1,0 +1,156 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Projects\\TechChallengeFiap\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{FFF1C194-9D05-4E5E-9C3C-DA6B66C8A21C}|TechChallengeFiap.csproj|c:\\projects\\techchallengefiap\\controllers\\contactcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FFF1C194-9D05-4E5E-9C3C-DA6B66C8A21C}|TechChallengeFiap.csproj|solutionrelative:controllers\\contactcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FFF1C194-9D05-4E5E-9C3C-DA6B66C8A21C}|TechChallengeFiap.csproj|c:\\projects\\techchallengefiap\\models\\contact.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FFF1C194-9D05-4E5E-9C3C-DA6B66C8A21C}|TechChallengeFiap.csproj|solutionrelative:models\\contact.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FFF1C194-9D05-4E5E-9C3C-DA6B66C8A21C}|TechChallengeFiap.csproj|c:\\projects\\techchallengefiap\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FFF1C194-9D05-4E5E-9C3C-DA6B66C8A21C}|TechChallengeFiap.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FFF1C194-9D05-4E5E-9C3C-DA6B66C8A21C}|TechChallengeFiap.csproj|c:\\projects\\techchallengefiap\\interfaces\\icontactservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FFF1C194-9D05-4E5E-9C3C-DA6B66C8A21C}|TechChallengeFiap.csproj|solutionrelative:interfaces\\icontactservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FFF1C194-9D05-4E5E-9C3C-DA6B66C8A21C}|TechChallengeFiap.csproj|c:\\projects\\techchallengefiap\\interfaces\\icontactrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FFF1C194-9D05-4E5E-9C3C-DA6B66C8A21C}|TechChallengeFiap.csproj|solutionrelative:interfaces\\icontactrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FFF1C194-9D05-4E5E-9C3C-DA6B66C8A21C}|TechChallengeFiap.csproj|c:\\projects\\techchallengefiap\\techchallengefiap.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{FFF1C194-9D05-4E5E-9C3C-DA6B66C8A21C}|TechChallengeFiap.csproj|solutionrelative:techchallengefiap.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FFF1C194-9D05-4E5E-9C3C-DA6B66C8A21C}|TechChallengeFiap.csproj|c:\\projects\\techchallengefiap\\infrastructure\\services\\contactservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FFF1C194-9D05-4E5E-9C3C-DA6B66C8A21C}|TechChallengeFiap.csproj|solutionrelative:infrastructure\\services\\contactservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FFF1C194-9D05-4E5E-9C3C-DA6B66C8A21C}|TechChallengeFiap.csproj|c:\\projects\\techchallengefiap\\infrastructure\\repository\\contactrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FFF1C194-9D05-4E5E-9C3C-DA6B66C8A21C}|TechChallengeFiap.csproj|solutionrelative:infrastructure\\repository\\contactrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 7,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "TechChallengeFiap",
+              "DocumentMoniker": "C:\\Projects\\TechChallengeFiap\\TechChallengeFiap.csproj",
+              "RelativeDocumentMoniker": "TechChallengeFiap.csproj",
+              "ToolTip": "C:\\Projects\\TechChallengeFiap\\TechChallengeFiap.csproj",
+              "RelativeToolTip": "TechChallengeFiap.csproj",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-10-16T15:55:57.589Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "IContactRepository.cs",
+              "DocumentMoniker": "C:\\Projects\\TechChallengeFiap\\Interfaces\\IContactRepository.cs",
+              "RelativeDocumentMoniker": "Interfaces\\IContactRepository.cs",
+              "ToolTip": "C:\\Projects\\TechChallengeFiap\\Interfaces\\IContactRepository.cs",
+              "RelativeToolTip": "Interfaces\\IContactRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAuwAcAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-16T15:41:38.943Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Contact.cs",
+              "DocumentMoniker": "C:\\Projects\\TechChallengeFiap\\Models\\Contact.cs",
+              "RelativeDocumentMoniker": "Models\\Contact.cs",
+              "ToolTip": "C:\\Projects\\TechChallengeFiap\\Models\\Contact.cs",
+              "RelativeToolTip": "Models\\Contact.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAuwBUAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-16T15:37:06.822Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "IContactService.cs",
+              "DocumentMoniker": "C:\\Projects\\TechChallengeFiap\\Interfaces\\IContactService.cs",
+              "RelativeDocumentMoniker": "Interfaces\\IContactService.cs",
+              "ToolTip": "C:\\Projects\\TechChallengeFiap\\Interfaces\\IContactService.cs",
+              "RelativeToolTip": "Interfaces\\IContactService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAqwAcAAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-16T15:37:06.844Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Projects\\TechChallengeFiap\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Projects\\TechChallengeFiap\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABcAAAAiAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-16T15:37:06.846Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ContactRepository.cs",
+              "DocumentMoniker": "C:\\Projects\\TechChallengeFiap\\Infrastructure\\Repository\\ContactRepository.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Repository\\ContactRepository.cs",
+              "ToolTip": "C:\\Projects\\TechChallengeFiap\\Infrastructure\\Repository\\ContactRepository.cs",
+              "RelativeToolTip": "Infrastructure\\Repository\\ContactRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAuwAcAAAAlAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-16T15:37:06.848Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ContactService.cs",
+              "DocumentMoniker": "C:\\Projects\\TechChallengeFiap\\Infrastructure\\Services\\ContactService.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Services\\ContactService.cs",
+              "ToolTip": "C:\\Projects\\TechChallengeFiap\\Infrastructure\\Services\\ContactService.cs",
+              "RelativeToolTip": "Infrastructure\\Services\\ContactService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAuwBAAAAANAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-16T15:37:06.85Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ContactController.cs",
+              "DocumentMoniker": "C:\\Projects\\TechChallengeFiap\\Controllers\\ContactController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ContactController.cs",
+              "ToolTip": "C:\\Projects\\TechChallengeFiap\\Controllers\\ContactController.cs",
+              "RelativeToolTip": "Controllers\\ContactController.cs",
+              "ViewState": "AQIAABUAAAAAAAAAAAAYwCcAAAARAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-16T15:37:06.851Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
