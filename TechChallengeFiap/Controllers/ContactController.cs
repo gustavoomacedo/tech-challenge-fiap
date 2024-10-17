@@ -49,6 +49,28 @@ namespace TechChallengeFiap.Controllers
             }
         }
 
+        /// <summary>
+        /// Método para a listar todos os contatos
+        /// </summary>
+        /// <returns></returns>
+        /// <response code="200">Contato adicionado com sucesso!</response>
+        /// <response code="400">Erro na validação do contato</response>
+        /// <response code="500">Não foi possível adicionar esse contato</response>
+        [HttpPost("GetAll")]
+        [AllowAnonymous]
+        public IActionResult Contacts()
+        {
+            try
+            {
+                var contacts = _contactService.GetAll();
+                return Ok(contacts);
+            }
+            catch (Exception ex)
+            {
+
+                return StatusCode(500, $"Não foi possível processar a requisição: {ex.Message}");
+            }
+        }
 
 
     }

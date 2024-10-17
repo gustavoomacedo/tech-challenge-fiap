@@ -5,7 +5,6 @@ namespace TechChallengeFiap.Infrastructure.Services
 {
     public class ContactService : IContactService
     {
-
         public readonly IContactRepository _contactRepository;
 
         public ContactService(IContactRepository contactRepository)
@@ -20,7 +19,7 @@ namespace TechChallengeFiap.Infrastructure.Services
         /// <returns></returns>
         /// <exception cref="ArgumentNullException"></exception>
         /// <exception cref="Exception"></exception>
-        public async Task<Contact> AddContact(Contact contact)
+        public Contact AddContact(Contact contact)
         {
             try
             {
@@ -29,14 +28,24 @@ namespace TechChallengeFiap.Infrastructure.Services
                     throw new ArgumentNullException(nameof(contact));
                 }
 
-                return await _contactRepository.AddAsync(contact);
-
+                _contactRepository.Add(contact);
+                return contact;
             }
             catch (Exception ex) 
             {
                 throw new Exception("Ocorreu um erro ao inserir o contato: " + ex);
             }
 
+        }
+
+        public ICollection<Contact> GetAll()
+        {
+            return _contactRepository.GetAll();
+        }
+
+        public Contact GetById(int id)
+        {
+            return _contactRepository.GetById(id);
         }
     }
 }

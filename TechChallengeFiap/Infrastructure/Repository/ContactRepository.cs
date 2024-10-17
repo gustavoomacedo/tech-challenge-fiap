@@ -3,11 +3,10 @@ using TechChallengeFiap.Models;
 
 namespace TechChallengeFiap.Infrastructure.Repository
 {
-    public class ContactRepository : IContactRepository
+    public class ContactRepository : EFRepository<Contact>, IContactRepository
     {
-        public Task<Contact> AddAsync(Contact contact)
+        public ContactRepository(ApplicationDbContext context) : base(context)
         {
-            throw new NotImplementedException();
         }
     }
 }

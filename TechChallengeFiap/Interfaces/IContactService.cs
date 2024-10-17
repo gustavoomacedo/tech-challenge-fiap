@@ -4,7 +4,8 @@ namespace TechChallengeFiap.Interfaces
 {
     public interface IContactService
     {
-
-        Task<Contact> AddContact(Contact contact);
+        Contact AddContact(Contact contact);
+        ICollection<Contact> GetAll();
+        Contact GetById(int id);
     }
 }

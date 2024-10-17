@@ -2,8 +2,7 @@
 
 namespace TechChallengeFiap.Interfaces
 {
-    public interface IContactRepository
+    public interface IContactRepository : IRepository<Contact>
     {
-        Task<Contact> AddAsync(Contact contact);
     }
 }
