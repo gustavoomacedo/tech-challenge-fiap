@@ -1,8 +1,12 @@
+using FluentValidation;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Reflection;
 using TechChallengeFiap.Infrastructure.Repository;
 using TechChallengeFiap.Infrastructure.Services;
+using TechChallengeFiap.Infrastructure.Validations;
 using TechChallengeFiap.Interfaces;
+using TechChallengeFiap.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +15,7 @@ builder.Services.AddScoped<IContactRepository, ContactRepository>();
 
 //Dependence injection to Service
 builder.Services.AddScoped<IContactService, ContactService>();
+builder.Services.AddScoped<IValidator<Contact>, ContactValidator>();
 
 // Add services to the container.
 var configuration = new ConfigurationBuilder()

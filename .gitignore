@@ -7,3 +7,6 @@
 /obj
 /TechChallengeFiap/.vs
 /TechChallengeFiap/obj
+/TechChallengeFiap/bin
+/TechChallengeFiap/bin/Debug
+/TechChallengeFiap/bin/Debug/net8.0

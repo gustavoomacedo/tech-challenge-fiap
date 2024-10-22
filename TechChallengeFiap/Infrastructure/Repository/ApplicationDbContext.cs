@@ -8,15 +8,6 @@ namespace TechChallengeFiap.Infrastructure.Repository
     {
         private readonly IConfiguration _configuration;
 
-
-        //public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
-        //    : base(options)
-        //{
-        //}
-        //public ApplicationDbContext()
-        //{
-        //}
-
         public ApplicationDbContext(IConfiguration configuration)
         {
             _configuration = configuration;

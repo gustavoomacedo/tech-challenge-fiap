@@ -9,5 +9,6 @@ namespace TechChallengeFiap.Interfaces
         Contact GetById(int id);
         void updateContact(Contact contact);
         void deleteContact(int id);
+        ICollection<int> GetAllDDDs();
     }
 }

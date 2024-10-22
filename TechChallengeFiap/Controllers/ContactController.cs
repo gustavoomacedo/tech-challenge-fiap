@@ -1,7 +1,10 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using TechChallengeFiap.Interfaces;
 using TechChallengeFiap.Models;
+using FluentValidation;
+using FluentValidation.Results;
 
 namespace TechChallengeFiap.Controllers
 {
@@ -11,12 +14,14 @@ namespace TechChallengeFiap.Controllers
     {
        
         private readonly ILogger<ContactController> _logger;
+        private IValidator<Contact> _validator;
         private readonly IContactService _contactService;
 
-        public ContactController(ILogger<ContactController> logger, IContactService contactService)
+        public ContactController(ILogger<ContactController> logger, IValidator<Contact> validator, IContactService contactService)
         {
             _logger = logger;
             _contactService = contactService;
+            _validator = validator;
         }
 
 
@@ -34,9 +39,10 @@ namespace TechChallengeFiap.Controllers
         {
             try
             {
-                if (!ModelState.IsValid)
+                ValidationResult validationResult = _validator.Validate(contact);
+                if (!ModelState.IsValid || !validationResult.IsValid)
                 {
-                    return BadRequest(ModelState);
+                    return BadRequest(new { model = ModelState, errors = validationResult.Errors });
                 }
 
                 var returnContact = _contactService.AddContact(contact);
