@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TechChallengeFiap</name>
+    </assembly>
+    <members>
+        <member name="M:TechChallengeFiap.Controllers.ContactController.AddContact(TechChallengeFiap.Models.Contact)">
+            <summary>
+            Método para a adição de um contato
+            </summary>
+            <param name="contact"></param>
+            <returns></returns>
+            <response code="200">Contato adicionado com sucesso!</response>
+            <response code="400">Erro na validação do contato</response>
+            <response code="500">Não foi possível adicionar esse contato</response>
+        </member>
+        <member name="M:TechChallengeFiap.Controllers.ContactController.Contacts">
+            <summary>
+            Método para a listar todos os contatos
+            </summary>
+            <returns></returns>
+            <response code="200">Contato adicionado com sucesso!</response>
+            <response code="400">Erro na validação do contato</response>
+            <response code="500">Não foi possível adicionar esse contato</response>
+        </member>
+        <member name="M:TechChallengeFiap.Controllers.ContactController.UpdateContacts(TechChallengeFiap.Models.Contact)">
+            <summary>
+            Método atualizar contato
+            </summary>
+            <returns></returns>
+            <response code="200">Contato adicionado com sucesso!</response>
+            <response code="400">Erro na validação do contato</response>
+            <response code="500">Não foi possível adicionar esse contato</response>
+        </member>
+        <member name="M:TechChallengeFiap.Controllers.ContactController.DeleteContacts(System.Int32)">
+            <summary>
+            Método para deletar
+            </summary>
+            <returns></returns>
+            <response code="200">Contato adicionado com sucesso!</response>
+            <response code="400">Erro na validação do contato</response>
+            <response code="500">Não foi possível adicionar esse contato</response>
+        </member>
+        <member name="M:TechChallengeFiap.Infrastructure.Services.ContactService.AddContact(TechChallengeFiap.Models.Contact)">
+            <summary>
+            M
+            </summary>
+            <param name="contact"></param>
+            <returns></returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
+            <exception cref="T:System.Exception"></exception>
+        </member>
+        <member name="T:TechChallengeFiap.Migrations.InitialMigration">
+            <inheritdoc />
+        </member>
+        <member name="M:TechChallengeFiap.Migrations.InitialMigration.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:TechChallengeFiap.Migrations.InitialMigration.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:TechChallengeFiap.Migrations.InitialMigration.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+    </members>
+</doc>

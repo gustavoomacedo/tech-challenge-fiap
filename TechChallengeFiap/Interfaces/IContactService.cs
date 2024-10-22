@@ -7,5 +7,7 @@ namespace TechChallengeFiap.Interfaces
         Contact AddContact(Contact contact);
         ICollection<Contact> GetAll();
         Contact GetById(int id);
+        void updateContact(Contact contact);
+        void deleteContact(int id);
     }
 }

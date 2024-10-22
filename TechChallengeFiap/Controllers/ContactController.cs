@@ -56,7 +56,7 @@ namespace TechChallengeFiap.Controllers
         /// <response code="200">Contato adicionado com sucesso!</response>
         /// <response code="400">Erro na validação do contato</response>
         /// <response code="500">Não foi possível adicionar esse contato</response>
-        [HttpPost("GetAll")]
+        [HttpGet("GetAll")]
         [AllowAnonymous]
         public IActionResult Contacts()
         {
@@ -64,6 +64,52 @@ namespace TechChallengeFiap.Controllers
             {
                 var contacts = _contactService.GetAll();
                 return Ok(contacts);
+            }
+            catch (Exception ex)
+            {
+
+                return StatusCode(500, $"Não foi possível processar a requisição: {ex.Message}");
+            }
+        }
+
+        /// <summary>
+        /// Método atualizar contato
+        /// </summary>
+        /// <returns></returns>
+        /// <response code="200">Contato adicionado com sucesso!</response>
+        /// <response code="400">Erro na validação do contato</response>
+        /// <response code="500">Não foi possível adicionar esse contato</response>
+        [HttpPut("update")]
+        [AllowAnonymous]
+        public IActionResult UpdateContacts([FromBody] Contact contact)
+        {
+            try
+            {
+                _contactService.updateContact(contact);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+
+                return StatusCode(500, $"Não foi possível processar a requisição: {ex.Message}");
+            }
+        }
+
+        /// <summary>
+        /// Método para deletar
+        /// </summary>
+        /// <returns></returns>
+        /// <response code="200">Contato adicionado com sucesso!</response>
+        /// <response code="400">Erro na validação do contato</response>
+        /// <response code="500">Não foi possível adicionar esse contato</response>
+        [HttpDelete("delete/{id}")]
+        [AllowAnonymous]
+        public IActionResult DeleteContacts(int id)
+        {
+            try
+            {
+                _contactService.deleteContact(id);
+                return Ok();
             }
             catch (Exception ex)
             {

@@ -47,5 +47,15 @@ namespace TechChallengeFiap.Infrastructure.Services
         {
             return _contactRepository.GetById(id);
         }
+
+        public void deleteContact(int id)
+        {
+            _contactRepository.Delete(id);
+        }
+
+        public void updateContact(Contact contact)
+        {
+            _contactRepository.Update(contact);
+        }
     }
 }
