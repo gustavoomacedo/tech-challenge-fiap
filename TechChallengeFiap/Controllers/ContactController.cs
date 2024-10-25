@@ -49,8 +49,7 @@ namespace TechChallengeFiap.Controllers
                 return Created("", returnContact);
             }
             catch (Exception ex)
-            {
-                
+            {                
                 return StatusCode(500, $"Não foi possível adicionar esse contato: {ex.Message}");
             }
         }
@@ -59,7 +58,7 @@ namespace TechChallengeFiap.Controllers
         /// Método para a listar todos os contatos
         /// </summary>
         /// <returns></returns>
-        /// <response code="200">Contato adicionado com sucesso!</response>
+        /// <response code="200">Todos os Contatos</response>
         /// <response code="400">Erro na validação do contato</response>
         /// <response code="500">Não foi possível adicionar esse contato</response>
         [HttpGet("GetAll")]
@@ -79,10 +78,34 @@ namespace TechChallengeFiap.Controllers
         }
 
         /// <summary>
+        /// Método para a listar todos os contatos filtrados pelo DDD
+        /// </summary>
+        /// <param name="ddd">Parâmetro do ddd que serão filtrados</param>
+        /// <returns></returns>
+        /// <response code="200">Contatos filtrados</response>
+        /// <response code="400">Erro na validação do contato</response>
+        /// <response code="500">Não foi possível adicionar esse contato</response>
+        [HttpGet("GetAllByDDD")]
+        [AllowAnonymous]
+        public IActionResult ContactsByDDD(int ddd)
+        {
+            try
+            {
+                var contacts = _contactService.GetAllByDDD(ddd);
+                return Ok(contacts);
+            }
+            catch (Exception ex)
+            {
+
+                return StatusCode(500, $"Não foi possível processar a requisição: {ex.Message}");
+            }
+        }
+
+        /// <summary>
         /// Método atualizar contato
         /// </summary>
         /// <returns></returns>
-        /// <response code="200">Contato adicionado com sucesso!</response>
+        /// <response code="200">Contato editado com sucesso!</response>
         /// <response code="400">Erro na validação do contato</response>
         /// <response code="500">Não foi possível adicionar esse contato</response>
         [HttpPut("update")]
@@ -105,7 +128,7 @@ namespace TechChallengeFiap.Controllers
         /// Método para deletar
         /// </summary>
         /// <returns></returns>
-        /// <response code="200">Contato adicionado com sucesso!</response>
+        /// <response code="200">Contato deletado com sucesso!</response>
         /// <response code="400">Erro na validação do contato</response>
         /// <response code="500">Não foi possível adicionar esse contato</response>
         [HttpDelete("delete/{id}")]

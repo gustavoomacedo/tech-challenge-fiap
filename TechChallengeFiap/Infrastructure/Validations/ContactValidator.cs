@@ -10,9 +10,6 @@ namespace TechChallengeFiap.Infrastructure.Validations
         public ContactValidator(IContactService contactService)
         {
             _contactService = contactService;
-
-            RuleFor(x => x.Name).NotEmpty().WithMessage("Nome não pode ser vazio");
-            RuleFor(x => x.Email).EmailAddress();
             RuleFor(x => x.DDD).Custom((number, context) =>
             {
                 var ddds = _contactService.GetAllDDDs();

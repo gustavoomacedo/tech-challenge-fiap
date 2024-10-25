@@ -35,7 +35,12 @@ namespace TechChallengeFiap.Infrastructure.Repository
 
         public T GetById(int id)
         {
-            return _context.Set<T>().FirstOrDefault(x => x.Id == id);
+            var entity = _context.Set<T>().FirstOrDefault(x => x.Id == id);
+            if (entity == null)
+            {
+                throw new KeyNotFoundException($"Entidade com ID {id} não foi encontrada.");
+            }
+            return entity;
         }
 
         public void Update(T entity)
