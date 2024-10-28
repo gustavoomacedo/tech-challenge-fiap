@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Runtime.CompilerServices;
 using TechChallengeFiap.Interfaces;
 using TechChallengeFiap.Models;
 
@@ -15,33 +16,40 @@ namespace TechChallengeFiap.Infrastructure.Repository
             _dbSet = _context.Set<T>();
         }
 
-        public int Add(T entity)
+        public async Task<int> Add(T entity)
         {
             entity.DataCriacao = DateTime.Now;
-            _context.Set<T>().Add(entity);
-            return _context.SaveChanges();
+            await _context.Set<T>().AddAsync(entity);
+            return await _context.SaveChangesAsync();
         }
 
-        public void Delete(int id)
+        public async Task Delete(int id)
         {
-            _context.Set<T>().Remove(GetById(id));
+            _context.Set<T>().Remove(await GetById(id));
             _context.SaveChanges();
         }
 
-        public IList<T> GetAll()
+        public async Task<IList<T>> GetAll()
         {
-            return _context.Set<T>().ToList();
+            return await _context.Set<T>().ToListAsync();
         }
 
-        public T GetById(int id)
+        public async Task<T> GetById(int id)
         {
-            return _context.Set<T>().FirstOrDefault(x => x.Id == id);
+            var entity = await _context.Set<T>().FirstOrDefaultAsync(x => x.Id == id);
+
+            if (entity == null)
+            {
+                throw new KeyNotFoundException($"Entidade com ID {id} não foi encontrada.");
+            }
+
+            return entity;
         }
 
-        public void Update(T entity)
+        public async Task Update(T entity)
         {
             _context.Set<T>().Update(entity);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
     }
 }

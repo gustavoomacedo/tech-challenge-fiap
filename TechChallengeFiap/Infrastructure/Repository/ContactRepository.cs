@@ -1,4 +1,5 @@
-﻿using TechChallengeFiap.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using TechChallengeFiap.Interfaces;
 using TechChallengeFiap.Models;
 
 namespace TechChallengeFiap.Infrastructure.Repository
@@ -10,9 +11,9 @@ namespace TechChallengeFiap.Infrastructure.Repository
 
         }
 
-        public ICollection<Contact> GetContactsByDDD(int DDD)
+        public async Task<ICollection<Contact>> GetContactsByDDD(int DDD)
         {
-            return _context.Contact.Where(x => x.DDD == DDD).ToList();
+            return await _context.Contact.Where(x => x.DDD == DDD).ToListAsync();
         }
     }
 }

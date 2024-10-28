@@ -17,7 +17,7 @@ namespace TechChallengeFiap.Models
         public required int DDD { get; set; }
 
         [Required(ErrorMessage = "O telefone é obrigatório.")]
-        [RegularExpression(@"^\d{8,15}$", ErrorMessage = "O telefone deve conter entre 8 e 15 dígitos.")]
+        [RegularExpression(@"^\d{8,9}$", ErrorMessage = "O telefone deve conter entre 8 ou 9 dígitos.")]
         public required int Telefone { get; set; }
     }
 }

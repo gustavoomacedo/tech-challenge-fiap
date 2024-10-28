@@ -4,10 +4,10 @@ namespace TechChallengeFiap.Interfaces
 {
     public interface IRepository<T> where T : EntityBase
     {
-        IList<T> GetAll();
-        T GetById(int id);
-        int Add(T entity);
-        void Update(T entity);
-        void Delete(int id);
+        Task<IList<T>> GetAll();
+        Task<T> GetById(int id);
+        Task<int> Add(T entity);
+        Task Update(T entity);
+        Task Delete(int id);
     }
 }

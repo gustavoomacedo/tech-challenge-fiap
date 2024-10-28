@@ -4,18 +4,18 @@ namespace TechChallengeFiap.Interfaces
 {
     public interface IContactService
     {
-        Contact AddContact(Contact contact);
+        Task<Contact> AddContactAsync(Contact contact);
 
-        ICollection<Contact> GetAll();
+        Task<ICollection<Contact>> GetAllAsync();
 
-        Contact GetById(int id);
+        Task<Contact> GetByIdAsync(int id);
 
-        void updateContact(Contact contact);
+        Task updateContactAsync(Contact contact);
 
-        void deleteContact(int id);
+        Task deleteContactAsync(int id);
+
+        Task<ICollection<Contact>> GetAllContactsByDDDAsync(int ddd);
 
         ICollection<int> GetAllDDDs();
-
-        ICollection<Contact> GetAllContactsByDDD(int ddd);
     }
 }

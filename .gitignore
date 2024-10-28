@@ -10,3 +10,5 @@
 /TechChallengeFiap/bin
 /TechChallengeFiap/bin/Debug
 /TechChallengeFiap/bin/Debug/net8.0
+/TechChallengeFiap.Tests/obj
+/TechChallengeFiap.Tests/bin/Debug/net8.0
