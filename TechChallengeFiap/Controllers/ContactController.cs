@@ -5,6 +5,7 @@ using TechChallengeFiap.Interfaces;
 using TechChallengeFiap.Models;
 using FluentValidation;
 using FluentValidation.Results;
+using Microsoft.IdentityModel.Tokens;
 
 namespace TechChallengeFiap.Controllers
 {
@@ -75,6 +76,32 @@ namespace TechChallengeFiap.Controllers
             {
 
                 return StatusCode(500, $"Não foi possível processar a requisição: {ex.Message}");
+            }
+        }
+
+        /// <summary>
+        /// Método para a listar todos os contatos por DDD
+        /// </summary>
+        /// <returns></returns>
+        /// <response code="200">Contatos por DDD buscados com sucesso!</response>
+        /// <response code="204">Não foi encontrado nenhum contato com o DDD informado</response>
+        /// <response code="500">Não foi possível buscar os os contatos com o DDD informado</response>
+        [HttpGet("GetByDdd")]
+        [AllowAnonymous]
+        public IActionResult GetContactsByDdd(int ddd)
+        {
+            try
+            {
+                var contacts = _contactService.GetAllContactsByDDD(ddd);
+
+                if (contacts == null || !contacts.Any())
+                    return NoContent(); 
+
+                return Ok(contacts); 
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Ops! Ocorreu um erro: {ex.Message}");
             }
         }
 
