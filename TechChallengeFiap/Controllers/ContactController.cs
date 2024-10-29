@@ -1,11 +1,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using TechChallengeFiap.Interfaces;
-using TechChallengeFiap.Models;
-using FluentValidation;
-using FluentValidation.Results;
-using Microsoft.IdentityModel.Tokens;
+using TechChallengeFiap.Infrastructure.DTOs;
 
 namespace TechChallengeFiap.Controllers
 {
@@ -15,14 +11,12 @@ namespace TechChallengeFiap.Controllers
     {
        
         private readonly ILogger<ContactController> _logger;
-        private IValidator<Contact> _validator;
         private readonly IContactService _contactService;
 
-        public ContactController(ILogger<ContactController> logger, IValidator<Contact> validator, IContactService contactService)
+        public ContactController(ILogger<ContactController> logger, IContactService contactService)
         {
             _logger = logger;
             _contactService = contactService;
-            _validator = validator;
         }
 
 
@@ -36,14 +30,13 @@ namespace TechChallengeFiap.Controllers
         /// <response code="500">Não foi possível adicionar esse contato</response>
         [HttpPost("AddContact")]
         [AllowAnonymous]
-        public async Task<IActionResult> AddContact([FromBody] Contact contact)
+        public async Task<IActionResult> AddContact([FromBody] ContactRequestDTO contact)
         {
             try
             {
-                ValidationResult validationResult = _validator.Validate(contact);
-                if (!ModelState.IsValid || !validationResult.IsValid)
+                if (!ModelState.IsValid)
                 {
-                    return BadRequest(new { model = ModelState, errors = validationResult.Errors });
+                    return BadRequest(new { model = ModelState });
                 }
 
                 var returnContact = await _contactService.AddContactAsync(contact);
@@ -90,7 +83,7 @@ namespace TechChallengeFiap.Controllers
         {
             try
             {
-                ICollection<Contact> contacts = await _contactService.GetAllContactsByDDDAsync(ddd);
+                ICollection<ContactResponseDTO> contacts = await _contactService.GetAllContactsByDDDAsync(ddd);
 
                 if (contacts == null || !contacts.Any())
                     return NoContent(); 
@@ -112,15 +105,13 @@ namespace TechChallengeFiap.Controllers
         /// <response code="500">Não foi possível editar esse contato</response>
         [HttpPut("update")]
         [AllowAnonymous]
-        public async Task<IActionResult> UpdateContacts([FromBody] Contact contact)
+        public async Task<IActionResult> UpdateContacts([FromBody] ContactUpdateRequestDTO contact)
         {
             try
             {
-                ValidationResult validationResult = _validator.Validate(contact);
-
-                if (!validationResult.IsValid)
+                if (!ModelState.IsValid)
                 {
-                    return BadRequest(new { model = ModelState, errors = validationResult.Errors });
+                    return BadRequest(new { model = ModelState });
                 }
 
                 await _contactService.updateContactAsync(contact);

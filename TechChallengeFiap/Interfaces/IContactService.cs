@@ -1,20 +1,21 @@
-﻿using TechChallengeFiap.Models;
+﻿using TechChallengeFiap.Infrastructure.DTOs;
+using TechChallengeFiap.Models;
 
 namespace TechChallengeFiap.Interfaces
 {
     public interface IContactService
     {
-        Task<Contact> AddContactAsync(Contact contact);
+        Task<ContactResponseDTO> AddContactAsync(ContactRequestDTO contact);
 
-        Task<ICollection<Contact>> GetAllAsync();
+        Task<ICollection<ContactResponseDTO>> GetAllAsync();
 
-        Task<Contact> GetByIdAsync(int id);
+        Task<ContactResponseDTO> GetByIdAsync(int id);
 
-        Task updateContactAsync(Contact contact);
+        Task updateContactAsync(ContactUpdateRequestDTO contact);
 
         Task deleteContactAsync(int id);
 
-        Task<ICollection<Contact>> GetAllContactsByDDDAsync(int ddd);
+        Task<ICollection<ContactResponseDTO>> GetAllContactsByDDDAsync(int ddd);
 
         ICollection<int> GetAllDDDs();
     }
