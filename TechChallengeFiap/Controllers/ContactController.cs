@@ -49,6 +49,28 @@ namespace TechChallengeFiap.Controllers
         }
 
         /// <summary>
+        /// Método para listar todos os DDDs
+        /// </summary>
+        /// <returns></returns>
+        /// <response code="200">Todos os DDDs foram buscados com sucesso</response>
+        /// <response code="500">Não foi possível buscar todos os DDDs</response>
+        [HttpGet("GetDDDs")]
+        [AllowAnonymous]
+        public IActionResult DDD()
+        {
+            try
+            {
+                var ddds = _contactService.GetAllDDDs();
+                return Ok(ddds);
+            }
+            catch (Exception ex)
+            {
+
+                return StatusCode(500, $"Não foi possível processar a requisição: {ex.Message}");
+            }
+        }
+
+        /// <summary>
         /// Método para listar todos os contatos
         /// </summary>
         /// <returns></returns>

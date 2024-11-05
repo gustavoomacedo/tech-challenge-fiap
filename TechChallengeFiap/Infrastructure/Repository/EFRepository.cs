@@ -38,7 +38,7 @@ namespace TechChallengeFiap.Infrastructure.Repository
         {
             var entity = await _context.Set<T>().FirstOrDefaultAsync(x => x.Id == id);
 
-            if (entity == null)
+            if (entity is null)
             {
                 throw new KeyNotFoundException($"Entidade com ID {id} não foi encontrada.");
             }

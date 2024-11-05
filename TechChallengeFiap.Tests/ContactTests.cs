@@ -316,6 +316,93 @@ namespace TechChallengeFiap.Tests
             // Assert
             Assert.IsType<BadRequestObjectResult>(result);
         }
+
+        [Fact]
+        public async Task Contacts_ShouldReturnOk_WithListOfContacts()
+        {
+            // Arrange
+            var contacts = new List<ContactResponseDTO> { new ContactResponseDTO { Id = 1, Name = "Test", DDD = 11, Email = "test@email.com", Telefone = 55555555, DataCriacao = DateTime.Now } };
+            _mockContactService.Setup(s => s.GetAllAsync()).ReturnsAsync(contacts);
+
+            // Act
+            var result = await _controller.Contacts();
+
+            // Assert
+            var okResult = Assert.IsType<OkObjectResult>(result);
+            Assert.Equal(contacts, okResult.Value);
+        }
+
+        [Fact]
+        public async Task GetContactsByDdd_ShouldReturnOk_WithContactsByDdd()
+        {
+            // Arrange
+            var ddd = 11;
+            var contacts = new List<ContactResponseDTO> { new ContactResponseDTO { Id = 1, Name = "Test", DDD = 11, Email = "test@email.com", Telefone = 55555555, DataCriacao = DateTime.Now } };
+            _mockContactService.Setup(s => s.GetAllContactsByDDDAsync(ddd)).ReturnsAsync(contacts);
+
+            // Act
+            var result = await _controller.GetContactsByDdd(ddd);
+
+            // Assert
+            var okResult = Assert.IsType<OkObjectResult>(result);
+            Assert.Equal(contacts, okResult.Value);
+        }
+
+        [Fact]
+        public async Task GetContactsByDdd_ShouldReturnNoContent_WhenNoContactsFound()
+        {
+            // Arrange
+            var ddd = 99;
+            _mockContactService.Setup(s => s.GetAllContactsByDDDAsync(ddd)).ReturnsAsync(new List<ContactResponseDTO>());
+
+            // Act
+            var result = await _controller.GetContactsByDdd(ddd);
+
+            // Assert
+            Assert.IsType<NoContentResult>(result);
+        }
+
+        [Fact]
+        public async Task UpdateContacts_ShouldReturnOk_WhenUpdateIsSuccessful()
+        {
+            // Arrange
+            var updateDTO = new ContactUpdateRequestDTO { Id = 1, Name = "Updated Name", DDD = 11, Telefone = 999999999 };
+
+            // Act
+            var result = await _controller.UpdateContacts(updateDTO);
+
+            // Assert
+            Assert.IsType<OkResult>(result);
+            _mockContactService.Verify(s => s.updateContactAsync(updateDTO), Times.Once);
+        }
+
+        [Fact]
+        public async Task UpdateContacts_ShouldReturnBadRequest_WhenModelIsInvalid()
+        {
+            // Arrange
+            _controller.ModelState.AddModelError("Name", "Required");
+            var updateDTO = new ContactUpdateRequestDTO();
+
+            // Act
+            var result = await _controller.UpdateContacts(updateDTO);
+
+            // Assert
+            Assert.IsType<BadRequestObjectResult>(result);
+        }
+
+        [Fact]
+        public async Task DeleteContacts_ShouldReturnOk_WhenDeleteIsSuccessful()
+        {
+            // Arrange
+            var contactId = 1;
+
+            // Act
+            var result = await _controller.DeleteContacts(contactId);
+
+            // Assert
+            Assert.IsType<OkResult>(result);
+            _mockContactService.Verify(s => s.deleteContactAsync(contactId), Times.Once);
+        }
         #endregion
     }
 }

@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
 using System;
 using System.Reflection;
 using TechChallengeFiap.Infrastructure.Repository;
@@ -24,6 +25,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Cadastro de contatos por DDD", Version = "v1" });
+
     var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
     var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile) ;
     c.IncludeXmlComments(xmlPath);

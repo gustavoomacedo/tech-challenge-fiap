@@ -24,7 +24,7 @@ namespace TechChallengeFiap.Infrastructure.Services
         {
             try
             {
-                if (contactDTO == null)
+                if (contactDTO is null)
                 {
                     throw new ArgumentNullException(nameof(contactDTO));
                 }
@@ -86,7 +86,7 @@ namespace TechChallengeFiap.Infrastructure.Services
         {
             var contact = await _contactRepository.GetById(id);
 
-            if (contact != null)
+            if (contact is not null)
             {
                 return new ContactResponseDTO()
                 {
@@ -114,7 +114,7 @@ namespace TechChallengeFiap.Infrastructure.Services
         {
             Contact contactEntity = await _contactRepository.GetById(contact.Id);
 
-            if (contactEntity == null)
+            if (contactEntity is null)
             {
                 throw new Exception("Contato não encontrado.");
             }
