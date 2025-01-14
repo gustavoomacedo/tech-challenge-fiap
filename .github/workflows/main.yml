@@ -30,3 +30,6 @@ jobs:
     # Compilar o projeto
     - name: Build the project
       run: dotnet build TechChallengeFiap/TechChallengeFiap.sln --no-restore --configuration Release
+
+    - name: Run tests
+      run: dotnet test TechChallengeFiap/TechChallengeFiap.sln --no-build --verbosity normal
