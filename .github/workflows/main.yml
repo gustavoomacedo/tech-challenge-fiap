@@ -31,5 +31,5 @@ jobs:
     - name: Build the project
       run: dotnet build TechChallengeFiap/TechChallengeFiap.sln --no-restore --configuration Release
 
-    - name: Run tests
-      run: dotnet test TechChallengeFiap/TechChallengeFiap.sln --no-build --verbosity normal
+    - name: Run xUnit tests
+      run: dotnet test TechChallengeFiap.Tests/TechChallengeFiap.Tests.csproj --no-build --verbosity normal
