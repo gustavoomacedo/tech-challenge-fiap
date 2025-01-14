@@ -22,6 +22,12 @@ jobs:
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: '8.0.x' # Versão do SDK, ajuste conforme necessário
+        install-dir: C:\Tools\dotnet # Escolha um diretório com permissões apropriadas
+
+    # Adicionar o .NET ao PATH
+    - name: Add .NET to PATH
+      run: |
+        echo C:\Tools\dotnet > $env:PATH
 
     # Restaurar dependências
     - name: Restore dependencies
