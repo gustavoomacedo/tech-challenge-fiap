@@ -25,8 +25,8 @@ jobs:
 
     # Restaurar dependências
     - name: Restore dependencies
-      run: dotnet restore TechChallengeFiap.sln
+      run: dotnet restore TechChallengeFiap/TechChallengeFiap.sln
 
     # Compilar o projeto
     - name: Build the project
-      run: dotnet build TechChallengeFiap.sln --no-restore --configuration Release
+      run: dotnet build TechChallengeFiap/TechChallengeFiap.sln --no-restore --configuration Release
