@@ -1,25 +1,36 @@
-name: CI/CD Pipeline
+name: .NET Core CI
 
 on:
   push:
     branches:
-      - main
+      - main # Dispara o pipeline em push para a branch main
+  pull_request:
+    branches:
+      - main # Dispara o pipeline em pull requests para a branch main
 
 jobs:
-  build-and-test:
+  build:
     runs-on: self-hosted
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+    # Baixar o código do repositório
+    - name: Checkout code
+      uses: actions/checkout@v3
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '14'
-          
-      - name: Install dependencies
-        run: npm install
+    # Configurar o .NET Core SDK
+    - name: Setup .NET Core SDK
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '8.0.x' # Versão do SDK, ajuste conforme necessário
 
-      - name: Run tests
-        run: npm test
+    # Restaurar dependências
+    - name: Restore dependencies
+      run: dotnet restore
+
+    # Compilar o projeto
+    - name: Build the project
+      run: dotnet build --no-restore --configuration Release
+
+    # Executar testes
+    - name: Run tests
+      run: dotnet test --no-build --verbosity normal
