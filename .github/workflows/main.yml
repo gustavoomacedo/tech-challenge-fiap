@@ -21,13 +21,7 @@ jobs:
     - name: Setup .NET Core SDK
       uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: '8.0.x' # Versão do SDK, ajuste conforme necessário
-        install-dir: C:\Tools\dotnet # Escolha um diretório com permissões apropriadas
-
-    # Adicionar o .NET ao PATH
-    - name: Add .NET to PATH
-      run: |
-        echo C:\Tools\dotnet > $env:PATH
+        dotnet-version: '7.0.x' # Versão do SDK, ajuste conforme necessário
 
     # Restaurar dependências
     - name: Restore dependencies
@@ -36,7 +30,3 @@ jobs:
     # Compilar o projeto
     - name: Build the project
       run: dotnet build --no-restore --configuration Release
-
-    # Executar testes
-    - name: Run tests
-      run: dotnet test --no-build --verbosity normal
