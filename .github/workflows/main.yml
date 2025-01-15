@@ -31,9 +31,9 @@ jobs:
     - name: Build the project
       run: dotnet build TechChallengeFiap/TechChallengeFiap.sln --no-restore --configuration Release
 
-    - name: List files in the repository
-      run: ls -R
+    #- name: List files in the repository
+    #  run: ls -R
       
     # Executar testes
     - name: Run tests
-      run: dotnet test TechChallengeFiap/TechChallengeFiap.sln --configuration Debug --no-build --verbosity normal
+      run: dotnet test TechChallengeFiap/TechChallengeFiap/TechChallengeFiap.Tests.csproj --configuration Debug --no-build --verbosity normal
