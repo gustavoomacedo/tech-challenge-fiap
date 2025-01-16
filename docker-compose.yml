@@ -1,0 +1,32 @@
+version: "3"
+services:
+  api:
+    build:
+      context: ./TechChallengeFiap
+      dockerfile: Dockerfile
+      args:
+        version: 1
+    image: tech-challenge-metrics
+    ports:
+      - 8080:80
+    networks:
+      - tech_challenge_metrics_network
+  prometheus:
+    build:
+      context: ./prometheus
+      dockerfile: Dockerfile
+      args:
+        version: 1
+    image: prometheus-local
+    restart: always
+    ports: 
+      - 9090:9090
+    networks:
+      - tech_challenge_metrics_network
+    volumes: 
+      - './prometheus/data:/data'
+
+networks:
+  tech_challenge_metrics_network:
+    driver: bridge
+    attachable: true
