@@ -7,52 +7,58 @@ using TechChallengeFiap.Infrastructure.Services;
 using TechChallengeFiap.Interfaces;
 using TechChallengeFiap.Models;
 
-var builder = WebApplication.CreateBuilder(args);
-
-//Dependence injection to repository
-builder.Services.AddScoped<IContactRepository, ContactRepository>();
-
-//Dependence injection to Service
-builder.Services.AddScoped<IContactService, ContactService>();
-
-// Add services to the container.
-var configuration = new ConfigurationBuilder()
-    .AddJsonFile("appsettings.json")
-    .Build();
-
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(c =>
+public class Program
 {
-    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Cadastro de contatos por DDD", Version = "v1" });
+    public static void Main(string[] args)
+    {
+        var builder = WebApplication.CreateBuilder(args);
 
-    var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile) ;
-    c.IncludeXmlComments(xmlPath);
-});
+        //Dependence injection to repository
+        builder.Services.AddScoped<IContactRepository, ContactRepository>();
 
-var connection = configuration.GetConnectionString("ConnectionString");
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-{
-    options.UseSqlServer(connection);
-    options.UseLazyLoadingProxies();
-});
+        //Dependence injection to Service
+        builder.Services.AddScoped<IContactService, ContactService>();
+
+        // Add services to the container.
+        var configuration = new ConfigurationBuilder()
+            .AddJsonFile("appsettings.json")
+            .Build();
+
+        builder.Services.AddControllers();
+        // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+        builder.Services.AddEndpointsApiExplorer();
+        builder.Services.AddSwaggerGen(c =>
+        {
+            c.SwaggerDoc("v1", new OpenApiInfo { Title = "Cadastro de contatos por DDD", Version = "v1" });
+
+            var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+            var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile) ;
+            c.IncludeXmlComments(xmlPath);
+        });
+
+        var connection = configuration.GetConnectionString("ConnectionString");
+        builder.Services.AddDbContext<ApplicationDbContext>(options =>
+        {
+            options.UseSqlServer(connection);
+            options.UseLazyLoadingProxies();
+        });
 
 
-var app = builder.Build();
+        var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
+        // Configure the HTTP request pipeline.
+        if (app.Environment.IsDevelopment())
+        {
+            app.UseSwagger();
+            app.UseSwaggerUI();
+        }
+
+        app.UseHttpsRedirection();
+
+        app.UseAuthorization();
+
+        app.MapControllers();
+
+        app.Run();
+    }
 }
-
-app.UseHttpsRedirection();
-
-app.UseAuthorization();
-
-app.MapControllers();
-
-app.Run();

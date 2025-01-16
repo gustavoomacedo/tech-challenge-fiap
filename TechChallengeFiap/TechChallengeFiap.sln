@@ -5,7 +5,12 @@ VisualStudioVersion = 17.8.34322.80
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TechChallengeFiap", "TechChallengeFiap.csproj", "{FFF1C194-9D05-4E5E-9C3C-DA6B66C8A21C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechChallengeFiap.Tests", "..\TechChallengeFiap.Tests\TechChallengeFiap.Tests.csproj", "{486D8859-1627-4B2A-9122-880FB2B25904}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TechChallengeFiap.Tests", "..\TechChallengeFiap.Tests\TechChallengeFiap.Tests.csproj", "{486D8859-1627-4B2A-9122-880FB2B25904}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechChallengeFiap.Tests.Integration", "..\TechChallengeFiap.Tests.Integration\TechChallengeFiap.Tests.Integration.csproj", "{109227A1-840E-4BCD-B465-DD47065D1F79}"
+	ProjectSection(ProjectDependencies) = postProject
+		{FFF1C194-9D05-4E5E-9C3C-DA6B66C8A21C} = {FFF1C194-9D05-4E5E-9C3C-DA6B66C8A21C}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +26,10 @@ Global
 		{486D8859-1627-4B2A-9122-880FB2B25904}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{486D8859-1627-4B2A-9122-880FB2B25904}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{486D8859-1627-4B2A-9122-880FB2B25904}.Release|Any CPU.Build.0 = Release|Any CPU
+		{109227A1-840E-4BCD-B465-DD47065D1F79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{109227A1-840E-4BCD-B465-DD47065D1F79}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{109227A1-840E-4BCD-B465-DD47065D1F79}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{109227A1-840E-4BCD-B465-DD47065D1F79}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
