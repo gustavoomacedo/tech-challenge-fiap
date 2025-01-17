@@ -1,5 +1,8 @@
-FROM prom/prometheus:v2.17.1 as image-prometheus-base
-COPY ./prometheus.yml /etc/prometheus
+# Usar a imagem base oficial do Prometheus
+FROM prom/prometheus:latest
+
+# Copiar o arquivo de configuração para dentro do contêiner
+COPY prometheus.yml /etc/prometheus/prometheus.yml
 
 VOLUME ./data
 EXPOSE 9090

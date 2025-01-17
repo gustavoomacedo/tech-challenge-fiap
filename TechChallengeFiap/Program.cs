@@ -74,7 +74,7 @@ public class Program
 
         /*FIM DA CONFIGURAÇÃO - PROMETHEUS*/
 
-        app.UseHttpsRedirection();
+        //app.UseHttpsRedirection();
 
         app.UseAuthorization();
 
