@@ -12,6 +12,20 @@ jobs:
   build:
     runs-on: self-hosted
 
+    services:
+      sqlserver:
+        image: mcr.microsoft.com/mssql/server:2022-latest
+        env:
+          SA_PASSWORD: "YourStrong!Passw0rd"
+          ACCEPT_EULA: "Y"
+        ports:
+          - 1433:1433
+        options: >-
+          --health-cmd="bash -c 'echo > /dev/tcp/localhost/1433'"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
+          
     steps:
     # Baixar o código do repositório
     - name: Checkout code
@@ -27,6 +41,30 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore TechChallengeFiap/TechChallengeFiap.sln
 
+    - name: Aguarde o SQL Server estar disponível
+      run: |
+          for i in {1..30}; do
+            if /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P "YourStrong@Passw0rd" -Q "SELECT 1" &>/dev/null; then
+              echo "SQL Server está disponível"
+              exit 0
+            fi
+            echo "Aguardando SQL Server iniciar..."
+            sleep 2
+          done
+          echo "O SQL Server não iniciou a tempo."
+          exit 1
+
+    - name: Criar banco de dados para testes
+      run: |
+          /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P "YourStrong@Passw0rd" -Q "CREATE DATABASE TestDb"
+
+    - name: Configurar connection string no appsettings.json
+      run: |
+          sed -i 's|"ConnectionString": ".*"|"ConnectionString": "Data Source=localhost,1433;Initial Catalog=TestDb;Persist Security Info=True;User ID=sa;Password=YourStrong@Passw0rd;Trust Server Certificate=True;"|' src/appsettings.json
+
+    - name: Aplicar migrations
+      run: dotnet ef database update --project TechChallengeFiap/TechChallengeFiap.csproj
+      
     # Compilar o projeto
     - name: Build the project
       run: dotnet build TechChallengeFiap/TechChallengeFiap.sln --no-restore --configuration Release
