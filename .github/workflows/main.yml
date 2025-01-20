@@ -36,13 +36,14 @@ jobs:
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: '8.0.x' # Versão do SDK, ajuste conforme necessário
-
-    - name: Instalar sqlcmd no Ubuntu
+        
+    - name: Instalar mssql-tools e dependências
       run: |
+            curl https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
+            curl https://packages.microsoft.com/mssql-server/rhel/7/prod.repo | sudo tee /etc/apt/sources.list.d/mssql-server.list
             sudo apt-get update
-            sudo apt-get install -y mssql-tools
-            sudo apt-get install -y unixodbc-dev
-            
+            sudo apt-get install -y mssql-tools unixodbc-dev
+      
     # Restaurar dependências
     - name: Restore dependencies
       run: dotnet restore TechChallengeFiap/TechChallengeFiap.sln
