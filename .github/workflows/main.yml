@@ -37,3 +37,10 @@ jobs:
     # Executar testes
     - name: Run tests
       run: dotnet test TechChallengeFiap.Tests/TechChallengeFiap.Tests.csproj --no-build --verbosity normal
+      
+    # Executar testes integrados
+    - name: Build the test integrated project
+      run: dotnet build ./TechChallengeFiap.Tests/TechChallengeFiap.Tests.Integration.csproj --configuration Debug
+      
+    - name: Run integrated tests
+      run: dotnet test TechChallengeFiap.Tests/TechChallengeFiap.Tests.Integration.csproj --no-build --verbosity normal
