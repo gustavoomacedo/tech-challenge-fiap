@@ -41,9 +41,13 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore TechChallengeFiap/TechChallengeFiap.sln
 
+    - name: Criar banco de dados para testes
+      run: |
+          /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P "YourStrong@Passw0rd" -Q "CREATE DATABASE TestDb"
+
     - name: Aguarde o SQL Server estar disponível
       run: |
-          for i in {1..30}; do
+          for i in {1..5}; do
             if /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P "YourStrong@Passw0rd" -Q "SELECT 1" &>/dev/null; then
               echo "SQL Server está disponível"
               exit 0
@@ -54,13 +58,9 @@ jobs:
           echo "O SQL Server não iniciou a tempo."
           exit 1
 
-    - name: Criar banco de dados para testes
-      run: |
-          /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P "YourStrong@Passw0rd" -Q "CREATE DATABASE TestDb"
-
     - name: Configurar connection string no appsettings.json
       run: |
-          sed -i 's|"ConnectionString": ".*"|"ConnectionString": "Data Source=localhost,1433;Initial Catalog=TestDb;Persist Security Info=True;User ID=sa;Password=YourStrong!Passw0rd;Trust Server Certificate=True;"|' src/appsettings.json
+          sed -i 's|"ConnectionString": ".*"|"ConnectionString": "Data Source=localhost,1433;Initial Catalog=TestDb;Persist Security Info=True;User ID=sa;Password=YourStrong@Passw0rd;Trust Server Certificate=True;"|' src/appsettings.json
 
     - name: Aplicar migrations
       run: dotnet ef database update --project TechChallengeFiap/TechChallengeFiap.csproj
