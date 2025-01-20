@@ -10,7 +10,7 @@ on:
 
 jobs:
   build:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
 
     services:
       sqlserver:
@@ -60,7 +60,7 @@ jobs:
 
     - name: Configurar connection string no appsettings.json
       run: |
-          sed -i 's|"ConnectionString": ".*"|"ConnectionString": "Data Source=localhost,1433;Initial Catalog=TestDb;Persist Security Info=True;User ID=sa;Password=YourStrong@Passw0rd;Trust Server Certificate=True;"|' src/appsettings.json
+          sed -i 's|"ConnectionString": ".*"|"ConnectionString": "Data Source=localhost,1433;Initial Catalog=TestDb;Persist Security Info=True;User ID=sa;Password=YourStrong!Passw0rd;Trust Server Certificate=True;"|' src/appsettings.json
 
     - name: Aplicar migrations
       run: dotnet ef database update --project TechChallengeFiap/TechChallengeFiap.csproj
