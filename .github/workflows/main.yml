@@ -39,7 +39,7 @@ jobs:
       run: |
             # Verifique a conectividade com o SQL Server
             echo "Testando a conexão com o SQL Server..."
-            sqlcmd -S $SQL_SERVER_HOST -U $SQL_SERVER_USER -P $SQL_SERVER_PASSWORD -d $SQL_SERVER_DB -Q "SELECT 1"
+            sqlcmd -S 'GUSTAVO-PC' -U 'sa' -P '12345678' -d 'ContactDB' -Q "SELECT 1"
             
     # Compilar o projeto
     - name: Build the project
