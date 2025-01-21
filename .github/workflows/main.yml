@@ -32,10 +32,10 @@ jobs:
     
     - name: Executar migrações no SQL Server Local
       env:
-            SQL_SERVER_HOST: GUSTAVO-PC
-            SQL_SERVER_USER: sa
-            SQL_SERVER_PASSWORD: 12345678
-            SQL_SERVER_DB: ContactDB
+            SQL_SERVER_HOST: 'GUSTAVO-PC'
+            SQL_SERVER_USER: 'sa'
+            SQL_SERVER_PASSWORD: '12345678'
+            SQL_SERVER_DB: 'ContactDB'
       run: |
             # Verifique a conectividade com o SQL Server
             echo "Testando a conexão com o SQL Server..."
