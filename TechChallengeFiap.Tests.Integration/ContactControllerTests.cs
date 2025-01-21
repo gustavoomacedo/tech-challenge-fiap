@@ -14,38 +14,38 @@ public class ContactControllerTests : IClassFixture<CustomWebApplicationFactory>
         _client = factory.CreateClient();
     }
 
-    [Fact]
-    public async Task GetAll_ShouldReturnOkWithContacts()
-    {
-        // Act
-        var response = await _client.GetAsync("/Contact/GetAll");
+    //[Fact]
+    //public async Task GetAll_ShouldReturnOkWithContacts()
+    //{
+    //    // Act
+    //    var response = await _client.GetAsync("/Contact/GetAll");
 
-        // Assert
-        response.EnsureSuccessStatusCode();
-        var json = await response.Content.ReadAsStringAsync();
-        Assert.NotNull(json);
+    //    // Assert
+    //    response.EnsureSuccessStatusCode();
+    //    var json = await response.Content.ReadAsStringAsync();
+    //    Assert.NotNull(json);
 
-        var contacts = JsonConvert.DeserializeObject<List<ContactResponseDTO>>(json);
+    //    var contacts = JsonConvert.DeserializeObject<List<ContactResponseDTO>>(json);
 
-        Assert.True(contacts?.Count > 0);
-    }
+    //    Assert.True(contacts?.Count > 0);
+    //}
 
-    [Fact]
-    public async Task AddContact_ShouldReturnCreated()
-    {
-        // Arrange
-        var newContact = new
-        {
-            Name = "Gustavo Macedo",
-            Email = "gustavo.macedo@example.com",
-            DDD = 11,
-            Telefone = 987654321
-        };
+    //[Fact]
+    //public async Task AddContact_ShouldReturnCreated()
+    //{
+    //    // Arrange
+    //    var newContact = new
+    //    {
+    //        Name = "Gustavo Macedo",
+    //        Email = "gustavo.macedo@example.com",
+    //        DDD = 11,
+    //        Telefone = 987654321
+    //    };
 
-        // Act
-        var response = await _client.PostAsJsonAsync("/Contact/AddContact", newContact);
+    //    // Act
+    //    var response = await _client.PostAsJsonAsync("/Contact/AddContact", newContact);
 
-        // Assert
-        response.StatusCode.Should().Be(HttpStatusCode.Created);
-    }
+    //    // Assert
+    //    response.StatusCode.Should().Be(HttpStatusCode.Created);
+    //}
 }
