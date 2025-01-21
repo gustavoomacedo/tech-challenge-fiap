@@ -37,6 +37,14 @@ public class Program
             c.IncludeXmlComments(xmlPath);
         });
 
+        builder.Services.AddCors(options =>
+        {
+            options.AddPolicy("AllowAllOrigins", builder =>
+                builder.AllowAnyOrigin()
+                       .AllowAnyMethod()
+                       .AllowAnyHeader());
+        });
+
         var connection = configuration.GetConnectionString("ConnectionString");
         builder.Services.AddDbContext<ApplicationDbContext>(options =>
         {
