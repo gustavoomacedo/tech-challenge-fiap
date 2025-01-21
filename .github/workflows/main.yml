@@ -39,7 +39,7 @@ jobs:
       run: |
             # Verifique a conectividade com o SQL Server
             echo "Testando a conexão com o SQL Server..."
-            sqlcmd -S GUSTAVO-PC\\SQLEXPRESS -U sa -P '12345678' -d ContactDB -Q "SELECT 1"
+            sqlcmd -S localhost\SQLEXPRESS -U sa -P '12345678' -d ContactDB -Q "SELECT 1"
             
     # Compilar o projeto
     - name: Build the project
