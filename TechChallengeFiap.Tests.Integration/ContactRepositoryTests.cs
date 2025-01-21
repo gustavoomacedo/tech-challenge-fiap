@@ -1,18 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TechChallengeFiap.Models;
 
 namespace TechChallengeFiap.Tests.Integration
 {
-    public class ContatoRepositoryTests : IClassFixture<DbTestFixture>
+    public class ContactRepositoryTests : IClassFixture<DbTestFixture>
     {
         private readonly ApplicationDbContext _context;
 
-        public ContatoRepositoryTests(DbTestFixture fixture)
+        public ContactRepositoryTests(DbTestFixture fixture)
         {
             _context = fixture.Context;
         }
