@@ -10,21 +10,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
-
-    services:
-      sqlserver:
-        image: mcr.microsoft.com/mssql/server:2022-latest
-        env:
-          SA_PASSWORD: "YourStrong!Passw0rd"
-          ACCEPT_EULA: "Y"
-        ports:
-          - 1433:1433
-        options: >-
-          --health-cmd="bash -c 'echo > /dev/tcp/localhost/1433'"
-          --health-interval=10s
-          --health-timeout=5s
-          --health-retries=5
+    runs-on: self-hosted
           
     steps:
     # Baixar o código do repositório
@@ -37,43 +23,24 @@ jobs:
       with:
         dotnet-version: '8.0.x' # Versão do SDK, ajuste conforme necessário
         
-    - name: Adicionar repositórios da Microsoft e instalar mssql-tools
-      run: |
-            sudo apt-get update
-            sudo apt-get install -y wget apt-transport-https
-            wget -qO- https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
-            sudo wget -q https://packages.microsoft.com/mssql-server/rhel/7/prod.repo -O /etc/apt/sources.list.d/mssql-server.list
-            sudo apt-get update
-            sudo apt-get install -y mssql-tools unixodbc-dev
-            
     # Restaurar dependências
     - name: Restore dependencies
       run: dotnet restore TechChallengeFiap/TechChallengeFiap.sln
 
-    - name: Criar banco de dados para testes
+    #- name: Aplicar migrations
+    #  run: dotnet ef database update --project TechChallengeFiap/TechChallengeFiap.csproj
+    
+    - name: Executar migrações no SQL Server Local
+      env:
+            SQL_SERVER_HOST: GUSTAVO-PC
+            SQL_SERVER_USER: sa
+            SQL_SERVER_PASSWORD: 12345678
+            SQL_SERVER_DB: ContactDB
       run: |
-          /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P "YourStrong@Passw0rd" -Q "CREATE DATABASE TestDb"
-
-    - name: Aguarde o SQL Server estar disponível
-      run: |
-          for i in {1..5}; do
-            if /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P "YourStrong@Passw0rd" -Q "SELECT 1" &>/dev/null; then
-              echo "SQL Server está disponível"
-              exit 0
-            fi
-            echo "Aguardando SQL Server iniciar..."
-            sleep 2
-          done
-          echo "O SQL Server não iniciou a tempo."
-          exit 1
-
-    - name: Configurar connection string no appsettings.json
-      run: |
-          sed -i 's|"ConnectionString": ".*"|"ConnectionString": "Data Source=localhost,1433;Initial Catalog=TestDb;Persist Security Info=True;User ID=sa;Password=YourStrong@Passw0rd;Trust Server Certificate=True;"|' src/appsettings.json
-
-    - name: Aplicar migrations
-      run: dotnet ef database update --project TechChallengeFiap/TechChallengeFiap.csproj
-      
+            # Verifique a conectividade com o SQL Server
+            echo "Testando a conexão com o SQL Server..."
+            sqlcmd -S $SQL_SERVER_HOST -U $SQL_SERVER_USER -P $SQL_SERVER_PASSWORD -d $SQL_SERVER_DB -Q "SELECT 1"
+            
     # Compilar o projeto
     - name: Build the project
       run: dotnet build TechChallengeFiap/TechChallengeFiap.sln --no-restore --configuration Release
