@@ -56,7 +56,16 @@ public class Program
         });
 
 
+
+
         var app = builder.Build();
+
+        // Aplica as Migrations automaticamente ao iniciar a aplicação
+        using (var scope = app.Services.CreateScope())
+        {
+            var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+            dbContext.Database.Migrate();  // Aplica as migrations pendentes
+        }
 
         // Configure the HTTP request pipeline.
         if (app.Environment.IsDevelopment())

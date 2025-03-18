@@ -23,7 +23,7 @@ namespace TechChallengeFiapConsumer
                 .ConfigureServices((context, services) =>
                 {
 
-                    var connection = context.Configuration.GetConnectionString("ConnectionString");
+                    var connection = context.Configuration.GetConnectionString("DefaultConnection");
                     services.AddDbContext<ApplicationDbContext>(options =>
                     {
                         options.UseSqlServer(connection);
@@ -50,11 +50,13 @@ namespace TechChallengeFiapConsumer
     {
         private readonly IContactService _contactService;
         private readonly IConfiguration _configuration;
+        private readonly IServiceProvider _serviceProvider;
 
-        public RabbitMQConsumerService(IContactService contactService, IConfiguration configuration)
+        public RabbitMQConsumerService(IContactService contactService, IConfiguration configuration, IServiceProvider serviceProvider)
         {
             _contactService = contactService;
             _configuration = configuration;
+            _serviceProvider = serviceProvider;
         }
 
         public Task StartAsync(CancellationToken cancellationToken)
@@ -73,17 +75,34 @@ namespace TechChallengeFiapConsumer
             var consumer = new EventingBasicConsumer(channel);
             consumer.Received += async (model, ea) =>
             {
+                using var scope = _serviceProvider.CreateScope();
+
+                var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+                var contactService = scope.ServiceProvider.GetRequiredService<IContactService>();
+
                 var body = ea.Body.ToArray();
                 var message = Encoding.UTF8.GetString(body);
 
-                // Parse da mensagem
-                var contact = ParseMessage(message);
+                try
+                {
+                    // Deserialize message
+                    var contact = JsonSerializer.Deserialize<ContactRequestDTO>(message);
 
-                // Salva no banco de dados
-                await SaveContactToDatabase(contact);
+                    // Process & Save to DB
+                    await contactService.AddContactAsync(contact);
+
+                    // ACK message
+                    channel.BasicAck(ea.DeliveryTag, false);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Erro: {ex.Message}");
+                    // Não dar ACK, a mensagem ficará na fila ou DLQ
+                }
+
             };
 
-            channel.BasicConsume(queue: "contactQueue", autoAck: true, consumer: consumer);
+            channel.BasicConsume(queue: "contactQueue", autoAck: false, consumer: consumer);
 
             return Task.CompletedTask;
         }
