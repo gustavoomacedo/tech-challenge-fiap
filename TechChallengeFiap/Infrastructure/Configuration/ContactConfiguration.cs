@@ -4,9 +4,9 @@ using TechChallengeFiap.Models;
 
 namespace TechChallengeFiap.Infrastructure.Configuration
 {
-    public class ContactConfiguration : IEntityTypeConfiguration<Contact>
+    public class ContactConfiguration : IEntityTypeConfiguration<ContactDto>
     {
-        public void Configure(EntityTypeBuilder<Contact> builder)
+        public void Configure(EntityTypeBuilder<ContactDto> builder)
         {
             builder.ToTable("Contact");
             builder.HasKey(u => u.Id);

@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TechChallengeFiap.Interfaces;
 using TechChallengeFiap.Infrastructure.DTOs;
+using TechChallengeFiap.RabbitMQ;
 
 namespace TechChallengeFiap.Controllers
 {
@@ -12,10 +13,14 @@ namespace TechChallengeFiap.Controllers
        
         private readonly ILogger<ContactController> _logger;
         private readonly IContactService _contactService;
+        private readonly IMessagePublisher _messagePublisher;
 
-        public ContactController(ILogger<ContactController> logger, IContactService contactService)
+        
+
+        public ContactController(ILogger<ContactController> logger, IContactService contactService, IMessagePublisher messagePublisher)
         {
             _logger = logger;
+            _messagePublisher = messagePublisher;
             _contactService = contactService;
         }
 
@@ -39,8 +44,8 @@ namespace TechChallengeFiap.Controllers
                     return BadRequest(new { model = ModelState });
                 }
 
-                var returnContact = await _contactService.AddContactAsync(contact);
-                return Created("", returnContact);
+                await _messagePublisher.PublishMessageAsync(contact);
+                return Created("", contact);
             }
             catch (Exception ex)
             {                

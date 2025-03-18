@@ -7,6 +7,7 @@ using TechChallengeFiap.Infrastructure.Repository;
 using TechChallengeFiap.Infrastructure.Services;
 using TechChallengeFiap.Interfaces;
 using TechChallengeFiap.Models;
+using TechChallengeFiap.RabbitMQ;
 
 public class Program
 {
@@ -19,6 +20,8 @@ public class Program
 
         //Dependence injection to Service
         builder.Services.AddScoped<IContactService, ContactService>();
+
+        builder.Services.AddScoped<IMessagePublisher, MessagePublisher>();
 
         // Add services to the container.
         var configuration = new ConfigurationBuilder()

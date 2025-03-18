@@ -6,6 +6,7 @@ using TechChallengeFiap.Interfaces;
 using TechChallengeFiap.Models;
 using TechChallengeFiap.Infrastructure.DTOs;
 using TechChallengeFiap.Infrastructure.Services;
+using TechChallengeFiap.RabbitMQ;
 
 namespace TechChallengeFiap.Tests
 {
@@ -17,16 +18,18 @@ namespace TechChallengeFiap.Tests
         private readonly Mock<IContactService> _mockContactService;
         private readonly ContactFixture _contactFixture;
         private readonly Mock<IContactRepository> _contactRepositoryMock;
+        private readonly Mock<IMessagePublisher> _contactMessageMock;
         private readonly ContactService _service;
 
         public ContactTests(ContactFixture contactFixture)
         {
             _mockLoggerController = new Mock<ILogger<ContactController>>();
             _contactRepositoryMock = new Mock<IContactRepository>();
+            _contactMessageMock = new Mock<IMessagePublisher>();
             _service = new ContactService(_contactRepositoryMock.Object);
             _mockContactService = new Mock<IContactService>();
             _contactFixture = contactFixture;
-            _controller = new ContactController(_mockLoggerController.Object, _mockContactService.Object);
+            _controller = new ContactController(_mockLoggerController.Object, _mockContactService.Object, _contactMessageMock.Object);
         }
 
         #region ContactService
@@ -68,7 +71,7 @@ namespace TechChallengeFiap.Tests
                 Telefone = 123456789
             };
             var contactId = 1;
-            _contactRepositoryMock.Setup(r => r.Add(It.IsAny<Contact>()))
+            _contactRepositoryMock.Setup(r => r.Add(It.IsAny<ContactDto>()))
                                   .ReturnsAsync(contactId);
 
             // Act
@@ -87,9 +90,9 @@ namespace TechChallengeFiap.Tests
         public async Task ContactService_GetAllAsync_ShouldReturnListOfContacts()
         {
             // Arrange
-            var contacts = new List<Contact>
+            var contacts = new List<ContactDto>
             {
-                new Contact { Id = 1, Name = "John Doe", Email = "john@example.com", DDD = 11, Telefone = 123456789 }
+                new ContactDto { Id = 1, Name = "John Doe", Email = "john@example.com", DDD = 11, Telefone = 123456789 }
             };
             _contactRepositoryMock.Setup(r => r.GetAll())
                                   .ReturnsAsync(contacts);
@@ -107,7 +110,7 @@ namespace TechChallengeFiap.Tests
         public async Task ContactService_GetByIdAsync_ShouldReturnContact_WhenContactExists()
         {
             // Arrange
-            var contact = new Contact { Id = 1, Name = "John Doe", Email = "john@example.com", DDD = 11, Telefone = 123456789 };
+            var contact = new ContactDto { Id = 1, Name = "John Doe", Email = "john@example.com", DDD = 11, Telefone = 123456789 };
             _contactRepositoryMock.Setup(r => r.GetById(contact.Id))
                                   .ReturnsAsync(contact);
 
@@ -125,7 +128,7 @@ namespace TechChallengeFiap.Tests
             // Arrange
             var contactId = 99;
             _contactRepositoryMock.Setup(r => r.GetById(contactId))
-                                  .ReturnsAsync((Contact)null);
+                                  .ReturnsAsync((ContactDto)null);
 
             // Act & Assert
             await Assert.ThrowsAsync<Exception>(() => _service.GetByIdAsync(contactId));
@@ -159,7 +162,7 @@ namespace TechChallengeFiap.Tests
                 Telefone = 123456789
             };
             _contactRepositoryMock.Setup(r => r.GetById(contactUpdate.Id))
-                                  .ReturnsAsync((Contact)null);
+                                  .ReturnsAsync((ContactDto)null);
 
             // Act & Assert
             await Assert.ThrowsAsync<Exception>(() => _service.updateContactAsync(contactUpdate));
@@ -169,7 +172,7 @@ namespace TechChallengeFiap.Tests
         public async Task ContactService_UpdateContactAsync_ShouldUpdateContact_WhenContactExists()
         {
             // Arrange
-            var contact = new Contact { Id = 1, Name = "Old Name", Email = "old@example.com", DDD = 11, Telefone = 123456789 };
+            var contact = new ContactDto { Id = 1, Name = "Old Name", Email = "old@example.com", DDD = 11, Telefone = 123456789 };
             var contactUpdate = new ContactUpdateRequestDTO
             {
                 Id = 1,
@@ -180,14 +183,14 @@ namespace TechChallengeFiap.Tests
             };
             _contactRepositoryMock.Setup(r => r.GetById(contactUpdate.Id))
                                   .ReturnsAsync(contact);
-            _contactRepositoryMock.Setup(r => r.Update(It.IsAny<Contact>()))
+            _contactRepositoryMock.Setup(r => r.Update(It.IsAny<ContactDto>()))
                                   .Returns(Task.CompletedTask);
 
             // Act
             await _service.updateContactAsync(contactUpdate);
 
             // Assert
-            _contactRepositoryMock.Verify(r => r.Update(It.Is<Contact>(c =>
+            _contactRepositoryMock.Verify(r => r.Update(It.Is<ContactDto>(c =>
                 c.Name == contactUpdate.Name &&
                 c.Email == contactUpdate.Email &&
                 c.DDD == contactUpdate.DDD &&
@@ -200,9 +203,9 @@ namespace TechChallengeFiap.Tests
         {
             // Arrange
             var ddd = 11;
-            var contacts = new List<Contact>
+            var contacts = new List<ContactDto>
             {
-                new Contact { Id = 1, Name = "John Doe", Email = "john@example.com", DDD = ddd, Telefone = 123456789 }
+                new ContactDto { Id = 1, Name = "John Doe", Email = "john@example.com", DDD = ddd, Telefone = 123456789 }
             };
             _contactRepositoryMock.Setup(r => r.GetContactsByDDD(ddd))
                                   .ReturnsAsync(contacts);

@@ -13,7 +13,7 @@ namespace TechChallengeFiap.Infrastructure.Repository
             _configuration = configuration;
         }
 
-        public DbSet<Contact> Contact { get; set; }
+        public DbSet<ContactDto> Contact { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

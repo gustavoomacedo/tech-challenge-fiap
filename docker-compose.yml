@@ -13,6 +13,7 @@ services:
       - ConnectionStrings__DefaultConnection=Server=host.docker.internal,1433;Database=ContactDB;User=sa;Password=YourStrong!Passw0rd;
     depends_on:
       - sqlserver
+      - rabbitmq
     networks:
       - tech_challenge_metrics_network
 
@@ -28,6 +29,15 @@ services:
       - tech_challenge_metrics_network
     volumes:
       - sql_data:/var/opt/mssql
+
+  rabbitmq:
+    image: "rabbitmq:management" # Imagem com a interface de gerenciamento do RabbitMQ
+    ports:
+      - "15672:15672" # Interface de gerenciamento RabbitMQ
+      - "5672:5672" # Porta para comunicação de mensageria
+    environment:
+      RABBITMQ_DEFAULT_USER: guest # Usuário default
+      RABBITMQ_DEFAULT_PASS: guest # Senha do usuário
 
   prometheus:
     build:
