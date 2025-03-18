@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TechChallengeFiapConsumer")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2c606664fca40dffe664dcd018ccfe106ed98d65")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+17a2f45ae3659b2cc5c064a2110597fe507037da")]
 [assembly: System.Reflection.AssemblyProductAttribute("TechChallengeFiapConsumer")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TechChallengeFiapConsumer")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
