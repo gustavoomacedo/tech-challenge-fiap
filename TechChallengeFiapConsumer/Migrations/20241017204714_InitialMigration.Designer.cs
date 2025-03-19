@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using TechChallengeFiapConsumer.Infrastructure.Repository;
+using TechChallengeFiapConsumerAdd.Infrastructure.Repository;
 
 #nullable disable
 
-namespace TechChallengeFiapConsumer.Migrations
+namespace TechChallengeFiapConsumerAdd.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     [Migration("20241017204714_InitialMigration")]

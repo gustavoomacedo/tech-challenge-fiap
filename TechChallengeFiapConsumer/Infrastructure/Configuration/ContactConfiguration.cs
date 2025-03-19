@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
-using TechChallengeFiapConsumer.Models;
+using TechChallengeFiapConsumerAdd.Models;
 
 
-namespace TechChallengeFiapConsumer.Infrastructure.Configuration
+namespace TechChallengeFiapConsumerAdd.Infrastructure.Configuration
 {
     public class ContactConfiguration : IEntityTypeConfiguration<ContactDto>
     {

@@ -1,21 +1,4 @@
 services:
-  api:
-    build:
-      context: ./TechChallengeFiap  # Caminho para a pasta onde está o Dockerfile
-      dockerfile: Dockerfile        # (opcional) Especifica o arquivo Dockerfile  
-      args:
-           version: 1
-    image: tech-challenge-metrics
-    ports:
-      - 8888:8080
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-    depends_on:
-      - sqlserver
-      - rabbitmq
-    networks:
-      - tech_challenge_metrics_network
-
   sqlserver:
     container_name: sqlserver
     image: mcr.microsoft.com/mssql/server:2022-latest
@@ -28,6 +11,22 @@ services:
       - tech_challenge_metrics_network
     volumes:
       - sql_data:/var/opt/mssql
+  api:
+    build:
+      context: ./TechChallengeFiap  # Caminho para a pasta onde está o Dockerfile
+      dockerfile: Dockerfile        # (opcional) Especifica o arquivo Dockerfile  
+      args:
+           version: 1
+    image: tech-challenge-metrics
+    ports:
+      - 8888:8080
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+    depends_on:
+      - sqlserver
+      - rabbitmq
+    networks:
+      - tech_challenge_metrics_network
 
   rabbitmq:
     image: "rabbitmq:management" # Imagem com a interface de gerenciamento do RabbitMQ
@@ -37,6 +36,8 @@ services:
     environment:
       RABBITMQ_DEFAULT_USER: guest # Usuário default
       RABBITMQ_DEFAULT_PASS: guest # Senha do usuário
+    networks:
+      - tech_challenge_metrics_network
 
   prometheus:
     build:
@@ -68,7 +69,6 @@ services:
 networks:
   tech_challenge_metrics_network:
     driver: bridge
-    attachable: true
 
 volumes:
   sql_data:

@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using TechChallengeFiapConsumer.Interfaces;
-using TechChallengeFiapConsumer.Models;
+using TechChallengeFiapConsumerAdd.Interfaces;
+using TechChallengeFiapConsumerAdd.Models;
 
-namespace TechChallengeFiapConsumer.Infrastructure.Repository
+namespace TechChallengeFiapConsumerAdd.Infrastructure.Repository
 {
     public class EFRepository<T> : IRepository<T> where T : EntityBase
     {

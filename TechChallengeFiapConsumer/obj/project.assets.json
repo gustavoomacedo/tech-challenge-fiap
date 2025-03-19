@@ -5895,6 +5895,7 @@
       "Microsoft.EntityFrameworkCore.SqlServer >= 9.0.3",
       "Microsoft.EntityFrameworkCore.Tools >= 9.0.3",
       "Microsoft.Extensions.Hosting >= 9.0.3",
+      "Microsoft.Extensions.Logging.Console >= 9.0.3",
       "Newtonsoft.Json >= 13.0.3",
       "RabbitMQ.Client >= 6.5.0"
     ]
@@ -5905,9 +5906,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\tech\\TechChallengeFiapConsumer\\TechChallengeFiapConsumer.csproj",
-      "projectName": "TechChallengeFiapConsumer",
-      "projectPath": "E:\\tech\\TechChallengeFiapConsumer\\TechChallengeFiapConsumer.csproj",
+      "projectUniqueName": "E:\\tech\\TechChallengeFiapConsumer\\TechChallengeFiapConsumerAdd.csproj",
+      "projectName": "TechChallengeFiapConsumerAdd",
+      "projectPath": "E:\\tech\\TechChallengeFiapConsumer\\TechChallengeFiapConsumerAdd.csproj",
       "packagesPath": "C:\\Users\\Gabriel\\.nuget\\packages\\",
       "outputPath": "E:\\tech\\TechChallengeFiapConsumer\\obj\\",
       "projectStyle": "PackageReference",
@@ -5959,6 +5960,10 @@
             "version": "[9.0.3, )"
           },
           "Microsoft.Extensions.Hosting": {
+            "target": "Package",
+            "version": "[9.0.3, )"
+          },
+          "Microsoft.Extensions.Logging.Console": {
             "target": "Package",
             "version": "[9.0.3, )"
           },

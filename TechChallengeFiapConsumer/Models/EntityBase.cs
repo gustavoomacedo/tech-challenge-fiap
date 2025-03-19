@@ -1,4 +1,4 @@
-﻿namespace TechChallengeFiapConsumer.Models
+﻿namespace TechChallengeFiapConsumerAdd.Models
 {
     public class EntityBase
     {

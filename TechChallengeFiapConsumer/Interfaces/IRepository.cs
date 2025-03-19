@@ -1,6 +1,6 @@
-﻿using TechChallengeFiapConsumer.Models;
+﻿using TechChallengeFiapConsumerAdd.Models;
 
-namespace TechChallengeFiapConsumer.Interfaces
+namespace TechChallengeFiapConsumerAdd.Interfaces
 {
     public interface IRepository<T> where T : EntityBase
     {

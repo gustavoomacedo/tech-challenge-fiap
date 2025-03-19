@@ -6,22 +6,15 @@ namespace TechChallengeFiap.Infrastructure.Repository
 {
     public class ApplicationDbContext : DbContext
     {
-        private readonly IConfiguration _configuration;
 
-        public ApplicationDbContext(IConfiguration configuration)
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+        : base(options)
         {
-            _configuration = configuration;
         }
+
 
         public DbSet<ContactDto> Contact { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-                optionsBuilder.UseSqlServer(_configuration.GetValue<string>("ConnectionStrings:ConnectionString"));
-            }
-        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace TechChallengeFiapConsumer.Infrastructure.DTOs
+namespace TechChallengeFiapConsumerAdd.Infrastructure.DTOs
 {
     public class ContactRequestDTO
     {

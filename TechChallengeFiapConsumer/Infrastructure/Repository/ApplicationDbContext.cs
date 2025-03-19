@@ -1,10 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using TechChallengeFiapConsumer.Infrastructure.Configuration;
-using TechChallengeFiapConsumer.Models;
+using TechChallengeFiapConsumerAdd.Infrastructure.Configuration;
+using TechChallengeFiapConsumerAdd.Models;
 
 
-namespace TechChallengeFiapConsumer.Infrastructure.Repository
+namespace TechChallengeFiapConsumerAdd.Infrastructure.Repository
 {
     public class ApplicationDbContext : DbContext
     {

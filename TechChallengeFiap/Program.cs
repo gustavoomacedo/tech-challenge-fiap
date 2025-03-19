@@ -48,24 +48,21 @@ public class Program
                        .AllowAnyHeader());
         });
 
-        var connection = configuration.GetConnectionString("ConnectionString");
+
         builder.Services.AddDbContext<ApplicationDbContext>(options =>
         {
-            options.UseSqlServer(connection);
-            options.UseLazyLoadingProxies();
+            // Aqui você usa a string de conexão do seu banco de dados
+            options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
         });
-
-
-
 
         var app = builder.Build();
 
         // Aplica as Migrations automaticamente ao iniciar a aplicação
-        ////using (var scope = app.Services.CreateScope())
-       // {
-        //    var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-       //     dbContext.Database.Migrate();  // Aplica as migrations pendentes
-       // }
+        using (var scope = app.Services.CreateScope())
+        {
+            var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+            dbContext.Database.Migrate();  // Aplica as migrations pendentes
+        }
 
         // Configure the HTTP request pipeline.
         if (app.Environment.IsDevelopment())

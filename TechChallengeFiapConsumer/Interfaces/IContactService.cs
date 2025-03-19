@@ -1,6 +1,6 @@
-﻿using TechChallengeFiapConsumer.Infrastructure.DTOs;
+﻿using TechChallengeFiapConsumerAdd.Infrastructure.DTOs;
 
-namespace TechChallengeFiapConsumer.Interfaces
+namespace TechChallengeFiapConsumerAdd.Interfaces
 {
     public interface IContactService
     {

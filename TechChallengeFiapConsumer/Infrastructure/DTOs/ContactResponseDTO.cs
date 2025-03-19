@@ -1,4 +1,4 @@
-﻿namespace TechChallengeFiapConsumer.Infrastructure.DTOs
+﻿namespace TechChallengeFiapConsumerAdd.Infrastructure.DTOs
 {
     public class ContactResponseDTO
     {

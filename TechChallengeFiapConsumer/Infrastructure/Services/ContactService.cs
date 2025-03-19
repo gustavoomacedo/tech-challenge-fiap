@@ -1,8 +1,8 @@
-﻿using TechChallengeFiapConsumer.Infrastructure.DTOs;
-using TechChallengeFiapConsumer.Interfaces;
-using TechChallengeFiapConsumer.Models;
+﻿using TechChallengeFiapConsumerAdd.Infrastructure.DTOs;
+using TechChallengeFiapConsumerAdd.Interfaces;
+using TechChallengeFiapConsumerAdd.Models;
 
-namespace TechChallengeFiapConsumer.Infrastructure.Services
+namespace TechChallengeFiapConsumerAdd.Infrastructure.Services
 {
     public class ContactService : IContactService
     {

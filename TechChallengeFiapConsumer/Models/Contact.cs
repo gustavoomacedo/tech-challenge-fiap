@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace TechChallengeFiapConsumer.Models
+namespace TechChallengeFiapConsumerAdd.Models
 {
     public class ContactDto : EntityBase
     {
