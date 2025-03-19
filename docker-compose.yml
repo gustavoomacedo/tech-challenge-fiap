@@ -11,22 +11,22 @@ services:
       - tech_challenge_metrics_network
     volumes:
       - sql_data:/var/opt/mssql
-  api-consulta:
-    build:
-      context: ./TechChallengeFiap  # Caminho para a pasta onde está o Dockerfile
-      dockerfile: Dockerfile        # (opcional) Especifica o arquivo Dockerfile  
-      args:
-           version: 1
-    image: tech-challenge-consulta
-    ports:
-      - 8888:8080
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Production
-    depends_on:
-      - sqlserver
-      - rabbitmq
-    networks:
-      - tech_challenge_metrics_network
+  # api-consulta:
+  #   build:
+  #     context: ./TechChallengeFiap  # Caminho para a pasta onde está o Dockerfile
+  #     dockerfile: Dockerfile        # (opcional) Especifica o arquivo Dockerfile  
+  #     args:
+  #          version: 1
+  #   image: tech-challenge-consulta
+  #   ports:
+  #     - 8888:8080
+  #   environment:
+  #     - ASPNETCORE_ENVIRONMENT=Production
+  #   depends_on:
+  #     - sqlserver
+  #     - rabbitmq
+  #   networks:
+  #     - tech_challenge_metrics_network
 
   api-add:
     build:
@@ -101,6 +101,7 @@ services:
       - tech_challenge_metrics_network
     volumes: 
       - './prometheus/data:/data'
+  
   grafana:
     build:
       context: ./grafana
@@ -113,7 +114,48 @@ services:
       - 3000:3000
     networks: 
       - tech_challenge_metrics_network
+  
+  service-worker-add:
+    build:
+      context: ./TechChallengeFiapConsumer  # Ajuste conforme o caminho do projeto
+      dockerfile: Dockerfile
+    image: tech-challenge-service-worker-add
+    restart: always  # Reinicia caso o container falhe
+    depends_on:
+      - sqlserver
+      - rabbitmq
+    networks:
+      - tech_challenge_metrics_network
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      
+  service-worker-delete:
+    build:
+      context: ./TechChallengeFiapConsumerDelete  # Ajuste conforme o caminho do projeto
+      dockerfile: Dockerfile
+    image: tech-challenge-service-worker-delete
+    restart: always
+    depends_on:
+      - sqlserver
+      - rabbitmq
+    networks:
+      - tech_challenge_metrics_network
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
 
+  service-worker-edit:
+    build:
+      context: ./TechChallengeFiapConsumerEdit  # Ajuste conforme o caminho do projeto
+      dockerfile: Dockerfile
+    image: tech-challenge-service-worker-edit
+    restart: always
+    depends_on:
+      - sqlserver
+      - rabbitmq
+    networks:
+      - tech_challenge_metrics_network
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
 networks:
   tech_challenge_metrics_network:
     driver: bridge

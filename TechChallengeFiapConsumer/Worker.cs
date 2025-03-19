@@ -8,9 +8,10 @@ using TechChallengeFiapConsumerAdd.Interfaces;
 
 public class Worker : BackgroundService
 {
-    private readonly IConfiguration _configuration;
     private readonly IServiceProvider _serviceProvider;
     private readonly ILogger<Worker> _logger;
+    private IConnection _connection;
+    private IModel _channel;
 
     public Worker(ILogger<Worker> logger, IServiceProvider serviceProvider)
     {
@@ -18,58 +19,73 @@ public class Worker : BackgroundService
         _serviceProvider = serviceProvider;
     }
 
-    protected override async Task ExecuteAsync(CancellationToken stoppingToken)
+    public override Task StartAsync(CancellationToken cancellationToken)
     {
         _logger.LogInformation("Worker started at: {time}", DateTimeOffset.Now);
 
-        while (!stoppingToken.IsCancellationRequested)
+        var factory = new ConnectionFactory()
         {
-            var factory = new ConnectionFactory()
+            HostName = "rabbitmq", // Nome do serviço no docker-compose.yml
+            UserName = "guest",
+            Password = "guest"
+        };
+
+        _connection = factory.CreateConnection();
+        _channel = _connection.CreateModel();
+
+        _channel.QueueDeclare(
+            queue: "contactQueue",
+            durable: false,
+            exclusive: false,
+            autoDelete: false,
+            arguments: null);
+
+        return base.StartAsync(cancellationToken);
+    }
+
+    protected override async Task ExecuteAsync(CancellationToken stoppingToken)
+    {
+        _logger.LogInformation("Worker executed at: {time}", DateTimeOffset.Now);
+
+        var consumer = new EventingBasicConsumer(_channel);
+        consumer.Received += async (model, ea) =>
+        {
+            using var scope = _serviceProvider.CreateScope();
+
+            var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+            var contactService = scope.ServiceProvider.GetRequiredService<IContactService>();
+
+            var body = ea.Body.ToArray();
+            var message = Encoding.UTF8.GetString(body);
+
+            try
             {
-                HostName = "localhost",
-                UserName = "guest",
-                Password = "guest",
-            };
-            var connection = factory.CreateConnection();
-            var channel = connection.CreateModel();
+                var contact = JsonSerializer.Deserialize<ContactRequestDTO>(message);
 
-            channel.QueueDeclare(queue: "contactQueue", durable: false, exclusive: false, autoDelete: false, arguments: null);
-
-            var consumer = new EventingBasicConsumer(channel);
-            consumer.Received += async (model, ea) =>
-            {
-                using var scope = _serviceProvider.CreateScope();
-
-                var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-                var contactService = scope.ServiceProvider.GetRequiredService<IContactService>();
-
-                var body = ea.Body.ToArray();
-                var message = Encoding.UTF8.GetString(body);
-
-                try
-                {
-                    // Deserialize message
-                    var contact = JsonSerializer.Deserialize<ContactRequestDTO>(message);
-
-                    // Process & Save to DB
+                if(contact != null)
                     await contactService.AddContactAsync(contact);
 
-                    // ACK message
-                    channel.BasicAck(ea.DeliveryTag, false);
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"Erro: {ex.Message}");
-                    // Não dar ACK, a mensagem ficará na fila ou DLQ
-                }
+                _channel.BasicAck(ea.DeliveryTag, false);
+                _logger.LogInformation("Message processed successfully: {message}", message);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Erro ao processar mensagem: {ex.Message}");
+                _channel.BasicNack(ea.DeliveryTag, false, requeue: true);
+                // Não dar ACK para que a mensagem permaneça na fila para nova tentativa
+            }
+        };
 
-            };
+        _channel.BasicConsume(queue: "contactQueue", autoAck: false, consumer: consumer);
 
-            channel.BasicConsume(queue: "contactQueue", autoAck: true, consumer: consumer);
+        await Task.Delay(Timeout.Infinite, stoppingToken); // Mantém o Worker rodando
+    }
 
-            await Task.Delay(2000,stoppingToken);
-        }
-
-        _logger.LogInformation("Worker stopping at: {time}", DateTimeOffset.Now);
+    public override Task StopAsync(CancellationToken cancellationToken)
+    {
+        _logger.LogInformation("Worker stopping...");
+        _channel?.Close();
+        _connection?.Close();
+        return base.StopAsync(cancellationToken);
     }
 }
