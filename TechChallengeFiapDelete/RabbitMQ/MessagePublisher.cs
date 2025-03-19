@@ -18,7 +18,7 @@ namespace TechChallengeFiapDelete.RabbitMQ
         public async Task PublishMessageAsync(int id)
         {
             var factory = new ConnectionFactory() { 
-                HostName = "localhost",
+                HostName = "rabbitmq",
                 UserName = "guest",
                 Password    = "guest",
             };

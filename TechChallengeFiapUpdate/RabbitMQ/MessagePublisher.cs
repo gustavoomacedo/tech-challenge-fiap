@@ -18,7 +18,7 @@ namespace TechChallengeFiapUpdate.RabbitMQ
         public async Task PublishMessageAsync(ContactUpdateRequestDTO contact)
         {
             var factory = new ConnectionFactory() { 
-                HostName = "localhost",
+                HostName = "rabbitmq",
                 UserName = "guest",
                 Password    = "guest",
             };
