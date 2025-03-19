@@ -11,19 +11,67 @@ services:
       - tech_challenge_metrics_network
     volumes:
       - sql_data:/var/opt/mssql
-  api:
+  api-consulta:
     build:
       context: ./TechChallengeFiap  # Caminho para a pasta onde está o Dockerfile
       dockerfile: Dockerfile        # (opcional) Especifica o arquivo Dockerfile  
       args:
            version: 1
-    image: tech-challenge-metrics
+    image: tech-challenge-consulta
     ports:
       - 8888:8080
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
     depends_on:
       - sqlserver
+      - rabbitmq
+    networks:
+      - tech_challenge_metrics_network
+
+  api-add:
+    build:
+      context: ./TechChallengeFiapAdd  # Caminho para a pasta onde está o Dockerfile
+      dockerfile: Dockerfile        # (opcional) Especifica o arquivo Dockerfile  
+      args:
+           version: 1
+    image: tech-challenge-add
+    ports:
+      - 8889:8080
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+    depends_on:
+      - rabbitmq
+    networks:
+      - tech_challenge_metrics_network
+
+  api-delete:
+    build:
+      context: ./TechChallengeFiapDelete  # Caminho para a pasta onde está o Dockerfile
+      dockerfile: Dockerfile        # (opcional) Especifica o arquivo Dockerfile  
+      args:
+           version: 1
+    image: tech-challenge-delete
+    ports:
+      - 8887:8080
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+    depends_on:
+      - rabbitmq
+    networks:
+      - tech_challenge_metrics_network
+
+  api-update:
+    build:
+      context: ./TechChallengeFiapUpdate  # Caminho para a pasta onde está o Dockerfile
+      dockerfile: Dockerfile        # (opcional) Especifica o arquivo Dockerfile  
+      args:
+           version: 1
+    image: tech-challenge-update
+    ports:
+      - 8886:8080
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+    depends_on:
       - rabbitmq
     networks:
       - tech_challenge_metrics_network

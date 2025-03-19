@@ -33,7 +33,7 @@ public class Program
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen(c =>
         {
-            c.SwaggerDoc("v1", new OpenApiInfo { Title = "Cadastro de contatos por DDD", Version = "v1" });
+            c.SwaggerDoc("v1", new OpenApiInfo { Title = "Consulta de contatos por DDD", Version = "v1" });
 
             var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
             var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile) ;
@@ -64,12 +64,10 @@ public class Program
             dbContext.Database.Migrate();  // Aplica as migrations pendentes
         }
 
-        // Configure the HTTP request pipeline.
-        if (app.Environment.IsDevelopment())
-        {
+
             app.UseSwagger();
             app.UseSwaggerUI();
-        }
+       
 
         /*INICIO DA CONFIGURAÇÃO - PROMETHEUS*/
         // Custom Metrics to count requests for each endpoint and the method

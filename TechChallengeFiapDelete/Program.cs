@@ -22,7 +22,7 @@ public class Program
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen(c =>
         {
-            c.SwaggerDoc("v1", new OpenApiInfo { Title = "Cadastro de contatos por DDD", Version = "v1" });
+            c.SwaggerDoc("v1", new OpenApiInfo { Title = "Exclusão de contatos por DDD", Version = "v1" });
 
             var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
             var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile) ;
@@ -41,12 +41,9 @@ public class Program
         var app = builder.Build();
 
 
-        // Configure the HTTP request pipeline.
-        if (app.Environment.IsDevelopment())
-        {
             app.UseSwagger();
             app.UseSwaggerUI();
-        }
+       
 
 
         app.UseAuthorization();
