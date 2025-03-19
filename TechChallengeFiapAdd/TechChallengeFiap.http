@@ -1,0 +1,6 @@
+@TechChallengeFiapAdd_HostAddress = http://localhost:5278
+
+GET {{TechChallengeFiapAdd_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

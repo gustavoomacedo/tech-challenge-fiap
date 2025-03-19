@@ -18,6 +18,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TechChallengeFiapConsumerDe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TechChallengeFiapConsumerUpdate", "..\TechChallengeFiapConsumerEdit\TechChallengeFiapConsumerUpdate.csproj", "{CEA1300D-2D37-45CA-AABB-ECD22FFFF868}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TechChallengeFiapAdd", "..\TechChallengeFiapAdd\TechChallengeFiapAdd.csproj", "{9F17A96E-100C-4129-A9AF-94935FF6BD0A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TechChallengeFiapDelete", "..\TechChallengeFiapDelete\TechChallengeFiapDelete.csproj", "{18DCAE77-B646-466E-B512-8783ECCA81A4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TechChallengeFiapUpdate", "..\TechChallengeFiapUpdate\TechChallengeFiapUpdate.csproj", "{5595EE68-2D4B-4AEF-A2F7-4713B6BA3175}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,6 +54,18 @@ Global
 		{CEA1300D-2D37-45CA-AABB-ECD22FFFF868}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CEA1300D-2D37-45CA-AABB-ECD22FFFF868}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CEA1300D-2D37-45CA-AABB-ECD22FFFF868}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F17A96E-100C-4129-A9AF-94935FF6BD0A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F17A96E-100C-4129-A9AF-94935FF6BD0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F17A96E-100C-4129-A9AF-94935FF6BD0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F17A96E-100C-4129-A9AF-94935FF6BD0A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18DCAE77-B646-466E-B512-8783ECCA81A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18DCAE77-B646-466E-B512-8783ECCA81A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18DCAE77-B646-466E-B512-8783ECCA81A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18DCAE77-B646-466E-B512-8783ECCA81A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5595EE68-2D4B-4AEF-A2F7-4713B6BA3175}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5595EE68-2D4B-4AEF-A2F7-4713B6BA3175}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5595EE68-2D4B-4AEF-A2F7-4713B6BA3175}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5595EE68-2D4B-4AEF-A2F7-4713B6BA3175}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

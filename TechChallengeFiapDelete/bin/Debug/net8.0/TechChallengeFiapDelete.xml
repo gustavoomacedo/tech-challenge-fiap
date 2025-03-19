@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TechChallengeFiapDelete</name>
+    </assembly>
+    <members>
+        <member name="M:TechChallengeFiapDelete.Controllers.ContactController.DeleteContacts(System.Int32)">
+            <summary>
+            Método para deletar um contato
+            </summary>
+            <returns></returns>
+            <response code="200">Contato deletado com sucesso!</response>
+            <response code="500">Não foi possível deletar esse contato</response>
+        </member>
+    </members>
+</doc>

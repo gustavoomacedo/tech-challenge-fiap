@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\TechChallengeFiap.props" />
+</Project>

@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TechChallengeFiap</name>
+    </assembly>
+    <members>
+        <member name="M:TechChallengeFiap.Controllers.ContactController.AddContact(TechChallengeFiap.Infrastructure.DTOs.ContactRequestDTO)">
+            <summary>
+            Método para a adição de um contato
+            </summary>
+            <param name="contact"></param>
+            <returns></returns>
+            <response code="201">Contato adicionado com sucesso!</response>
+            <response code="400">Erro na validação do contato</response>
+            <response code="500">Não foi possível adicionar esse contato</response>
+        </member>
+        <member name="M:TechChallengeFiap.Controllers.ContactController.DDD">
+            <summary>
+            Método para listar todos os DDDs
+            </summary>
+            <returns></returns>
+            <response code="200">Todos os DDDs foram buscados com sucesso</response>
+            <response code="500">Não foi possível buscar todos os DDDs</response>
+        </member>
+        <member name="M:TechChallengeFiap.Controllers.ContactController.Contacts">
+            <summary>
+            Método para listar todos os contatos
+            </summary>
+            <returns></returns>
+            <response code="200">Todos os Contatos foram buscados com sucesso</response>
+            <response code="500">Não foi possível buscar todos os contatos</response>
+        </member>
+        <member name="M:TechChallengeFiap.Controllers.ContactController.GetContactsByDdd(System.Int32)">
+            <summary>
+            Método para a listar todos os contatos por DDD
+            </summary>
+            <returns></returns>
+            <response code="200">Contatos por DDD buscados com sucesso!</response>
+            <response code="204">Não foi encontrado nenhum contato com o DDD informado</response>
+            <response code="500">Não foi possível buscar os os contatos com o DDD informado</response>
+        </member>
+        <member name="M:TechChallengeFiap.Controllers.ContactController.UpdateContacts(TechChallengeFiap.Infrastructure.DTOs.ContactUpdateRequestDTO)">
+            <summary>
+            Método atualizar contato
+            </summary>
+            <returns></returns>
+            <response code="200">Contato editado com sucesso!</response>
+            <response code="400">Erro na validação do contato</response>
+            <response code="500">Não foi possível editar esse contato</response>
+        </member>
+        <member name="M:TechChallengeFiap.Controllers.ContactController.DeleteContacts(System.Int32)">
+            <summary>
+            Método para deletar um contato
+            </summary>
+            <returns></returns>
+            <response code="200">Contato deletado com sucesso!</response>
+            <response code="500">Não foi possível deletar esse contato</response>
+        </member>
+        <member name="M:TechChallengeFiap.Infrastructure.Services.ContactService.AddContactAsync(TechChallengeFiap.Infrastructure.DTOs.ContactRequestDTO)">
+            <summary>
+            Metodo para adicionar um novo contato
+            </summary>
+            <param name="contact"></param>
+            <returns></returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
+            <exception cref="T:System.Exception"></exception>
+        </member>
+        <member name="T:TechChallengeFiap.Migrations.InitialMigration">
+            <inheritdoc />
+        </member>
+        <member name="M:TechChallengeFiap.Migrations.InitialMigration.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:TechChallengeFiap.Migrations.InitialMigration.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:TechChallengeFiap.Migrations.InitialMigration.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TechChallengeFiapUpdate</name>
+    </assembly>
+    <members>
+        <member name="M:TechChallengeFiapUpdate.Controllers.ContactController.UpdateContacts(TechChallengeFiapUpdate.Infrastructure.DTOs.ContactUpdateRequestDTO)">
+            <summary>
+            Método atualizar contato
+            </summary>
+            <returns></returns>
+            <response code="200">Contato editado com sucesso!</response>
+            <response code="400">Erro na validação do contato</response>
+            <response code="500">Não foi possível editar esse contato</response>
+        </member>
+    </members>
+</doc>

@@ -26,34 +26,6 @@ namespace TechChallengeFiap.Controllers
 
 
         /// <summary>
-        /// Método para a adição de um contato
-        /// </summary>
-        /// <param name="contact"></param>
-        /// <returns></returns>
-        /// <response code="201">Contato adicionado com sucesso!</response>
-        /// <response code="400">Erro na validação do contato</response>
-        /// <response code="500">Não foi possível adicionar esse contato</response>
-        [HttpPost("AddContact")]
-        [AllowAnonymous]
-        public async Task<IActionResult> AddContact([FromBody] ContactRequestDTO contact)
-        {
-            try
-            {
-                if (!ModelState.IsValid)
-                {
-                    return BadRequest(new { model = ModelState });
-                }
-
-                await _messagePublisher.PublishMessageAsync(contact);
-                return Created("", contact);
-            }
-            catch (Exception ex)
-            {                
-                return StatusCode(500, $"Não foi possível adicionar esse contato: {ex.Message}");
-            }
-        }
-
-        /// <summary>
         /// Método para listar todos os DDDs
         /// </summary>
         /// <returns></returns>
@@ -122,57 +94,6 @@ namespace TechChallengeFiap.Controllers
                 return StatusCode(500, $"Ops! Ocorreu um erro: {ex.Message}");
             }
         }
-
-        /// <summary>
-        /// Método atualizar contato
-        /// </summary>
-        /// <returns></returns>
-        /// <response code="200">Contato editado com sucesso!</response>
-        /// <response code="400">Erro na validação do contato</response>
-        /// <response code="500">Não foi possível editar esse contato</response>
-        [HttpPut("update")]
-        [AllowAnonymous]
-        public async Task<IActionResult> UpdateContacts([FromBody] ContactUpdateRequestDTO contact)
-        {
-            try
-            {
-                if (!ModelState.IsValid)
-                {
-                    return BadRequest(new { model = ModelState });
-                }
-
-                await _contactService.updateContactAsync(contact);
-                return Ok();
-            }
-            catch (Exception ex)
-            {
-
-                return StatusCode(500, $"Não foi possível processar a requisição: {ex.Message}");
-            }
-        }
-
-        /// <summary>
-        /// Método para deletar um contato
-        /// </summary>
-        /// <returns></returns>
-        /// <response code="200">Contato deletado com sucesso!</response>
-        /// <response code="500">Não foi possível deletar esse contato</response>
-        [HttpDelete("delete/{id}")]
-        [AllowAnonymous]
-        public async Task<IActionResult> DeleteContacts(int id)
-        {
-            try
-            {
-                await _contactService.deleteContactAsync(id);
-                return Ok();
-            }
-            catch (Exception ex)
-            {
-
-                return StatusCode(500, $"Não foi possível processar a requisição: {ex.Message}");
-            }
-        }
-
 
     }
 }
