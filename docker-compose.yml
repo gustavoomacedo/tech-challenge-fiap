@@ -156,6 +156,22 @@ services:
       - tech_challenge_metrics_network
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
+
+  api-gateway:
+    build:
+      context: ./TechChallengeFiapApiGateway
+      dockerfile: Dockerfile
+    image: tech-challenge-api-gateway
+    ports:
+      - "8080:8080"
+    networks:
+      - tech_challenge_metrics_network
+    depends_on:
+      - api-add
+      - api-delete
+      - api-update
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
 networks:
   tech_challenge_metrics_network:
     driver: bridge

@@ -6,6 +6,10 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TechChallengeFiap", "TechChallengeFiap.csproj", "{FFF1C194-9D05-4E5E-9C3C-DA6B66C8A21C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TechChallengeFiap.Tests", "..\TechChallengeFiap.Tests\TechChallengeFiap.Tests.csproj", "{486D8859-1627-4B2A-9122-880FB2B25904}"
+	ProjectSection(ProjectDependencies) = postProject
+		{18DCAE77-B646-466E-B512-8783ECCA81A4} = {18DCAE77-B646-466E-B512-8783ECCA81A4}
+		{5595EE68-2D4B-4AEF-A2F7-4713B6BA3175} = {5595EE68-2D4B-4AEF-A2F7-4713B6BA3175}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TechChallengeFiap.Tests.Integration", "..\TechChallengeFiap.Tests.Integration\TechChallengeFiap.Tests.Integration.csproj", "{109227A1-840E-4BCD-B465-DD47065D1F79}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -23,6 +27,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TechChallengeFiapDelete", "..\TechChallengeFiapDelete\TechChallengeFiapDelete.csproj", "{18DCAE77-B646-466E-B512-8783ECCA81A4}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TechChallengeFiapUpdate", "..\TechChallengeFiapUpdate\TechChallengeFiapUpdate.csproj", "{5595EE68-2D4B-4AEF-A2F7-4713B6BA3175}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechChallengeFiapApiGateway", "..\TechChallengeFiapApiGateway\TechChallengeFiapApiGateway.csproj", "{9EA32CE3-0978-48D5-9926-3C69B959C367}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -66,6 +72,10 @@ Global
 		{5595EE68-2D4B-4AEF-A2F7-4713B6BA3175}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5595EE68-2D4B-4AEF-A2F7-4713B6BA3175}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5595EE68-2D4B-4AEF-A2F7-4713B6BA3175}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9EA32CE3-0978-48D5-9926-3C69B959C367}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9EA32CE3-0978-48D5-9926-3C69B959C367}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9EA32CE3-0978-48D5-9926-3C69B959C367}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9EA32CE3-0978-48D5-9926-3C69B959C367}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
