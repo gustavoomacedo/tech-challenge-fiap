@@ -1,16 +1,17 @@
 services:
-  sqlserver:
-    container_name: sqlserver
-    image: mcr.microsoft.com/mssql/server:2022-latest
-    environment:
-      - ACCEPT_EULA=Y
-      - SA_PASSWORD=YourStrong!Passw0rd
-    ports:
-      - "1433:1433"
-    networks:
-      - tech_challenge_metrics_network
-    volumes:
-      - sql_data:/var/opt/mssql
+  # sqlserver:
+  #   container_name: sqlserver
+  #   image: mcr.microsoft.com/mssql/server:2022-latest
+  #   environment:
+  #     - ACCEPT_EULA=Y
+  #     - SA_PASSWORD=YourStrong!Passw0rd
+  #   ports:
+  #     - "1433:1433"
+  #   networks:
+  #     - tech_challenge_metrics_network
+  #   volumes:
+  #     - sql_data:/var/opt/mssql
+
   # api-consulta:
   #   build:
   #     context: ./TechChallengeFiap  # Caminho para a pasta onde está o Dockerfile
@@ -122,7 +123,6 @@ services:
     image: tech-challenge-service-worker-add
     restart: always  # Reinicia caso o container falhe
     depends_on:
-      - sqlserver
       - rabbitmq
     networks:
       - tech_challenge_metrics_network
@@ -136,7 +136,6 @@ services:
     image: tech-challenge-service-worker-delete
     restart: always
     depends_on:
-      - sqlserver
       - rabbitmq
     networks:
       - tech_challenge_metrics_network
@@ -150,7 +149,6 @@ services:
     image: tech-challenge-service-worker-edit
     restart: always
     depends_on:
-      - sqlserver
       - rabbitmq
     networks:
       - tech_challenge_metrics_network
@@ -175,6 +173,3 @@ services:
 networks:
   tech_challenge_metrics_network:
     driver: bridge
-
-volumes:
-  sql_data:
