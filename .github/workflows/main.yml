@@ -30,16 +30,16 @@ jobs:
     #- name: Aplicar migrations
     #  run: dotnet ef database update --project TechChallengeFiap/TechChallengeFiap.csproj
     
-    - name: Executar migrações no SQL Server Local
-      env:
-            SQL_SERVER_HOST: 'GUSTAVO-PC'
-            SQL_SERVER_USER: 'sa'
-            SQL_SERVER_PASSWORD: '12345678'
-            SQL_SERVER_DB: 'ContactDB'
-      run: |
-            # Verifique a conectividade com o SQL Server
-            echo "Testando a conexão com o SQL Server..."
-            sqlcmd -S localhost\SQLEXPRESS -U sa -P '12345678' -d ContactDB -Q "SELECT 1"
+    #- name: Executar migrações no SQL Server Local
+    #  env:
+    #        SQL_SERVER_HOST: 'GUSTAVO-PC'
+    #        SQL_SERVER_USER: 'sa'
+    #        SQL_SERVER_PASSWORD: '12345678'
+    #        SQL_SERVER_DB: 'ContactDB'
+    #  run: |
+    #        # Verifique a conectividade com o SQL Server
+    #        echo "Testando a conexão com o SQL Server..."
+    #        sqlcmd -S localhost\SQLEXPRESS -U sa -P '12345678' -d ContactDB -Q "SELECT 1"
             
     # Compilar o projeto
     - name: Build the project
