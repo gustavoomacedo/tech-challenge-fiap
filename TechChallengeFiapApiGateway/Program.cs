@@ -1,5 +1,6 @@
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
+using Prometheus;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +9,15 @@ builder.Configuration.AddJsonFile("ocelot.json", optional: false, reloadOnChange
 builder.Services.AddOcelot();
 
 var app = builder.Build();
-app.UseOcelot().Wait();
 
+// Adiciona Middleware de Métricas Prometheus
+app.UseRouting();
+app.UseHttpMetrics();  // Captura métricas HTTP automaticamente
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapMetrics();  // Expondo métricas na rota "/metrics"
+});
+
+app.UseOcelot().Wait();
 app.Run();
