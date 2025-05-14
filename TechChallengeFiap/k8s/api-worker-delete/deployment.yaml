@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: service-worker-delete
+  namespace: techchallenge
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: service-worker-delete
+  template:
+    metadata:
+      labels:
+        app: service-worker-delete
+    spec:
+      containers:
+        - name: service-worker-delete
+          image: tech-challenge-service-worker-delete
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 80
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              value: "Production"

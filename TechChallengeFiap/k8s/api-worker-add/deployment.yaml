@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: service-worker-add
+  namespace: techchallenge
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: service-worker-add
+  template:
+    metadata:
+      labels:
+        app: service-worker-add
+    spec:
+      containers:
+        - name: service-worker-add
+          image: tech-challenge-service-worker-add
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 80
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              value: "Production"

@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-delete
+  namespace: techchallenge
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api-delete
+  template:
+    metadata:
+      labels:
+        app: api-delete
+    spec:
+      containers:
+        - name: api-delete
+          image: tech-challenge-delete
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8080
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              value: "Production"

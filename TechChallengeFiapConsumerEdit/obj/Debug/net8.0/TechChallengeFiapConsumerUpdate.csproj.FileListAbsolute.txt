@@ -172,9 +172,9 @@ E:\tech\TechChallengeFiapConsumerEdit\obj\Debug\net8.0\TechChallengeFiapConsumer
 E:\tech\TechChallengeFiapConsumerEdit\obj\Debug\net8.0\TechChallengeFiapConsumerUpdate.AssemblyInfo.cs
 E:\tech\TechChallengeFiapConsumerEdit\obj\Debug\net8.0\TechChallengeFiapConsumerUpdate.csproj.CoreCompileInputs.cache
 E:\tech\TechChallengeFiapConsumerEdit\obj\Debug\net8.0\TechChallengeFiapConsumerUpdate.sourcelink.json
-E:\tech\TechChallengeFiapConsumerEdit\obj\Debug\net8.0\TechChallengeFiapConsumerUpdate.csproj.CopyComplete
 E:\tech\TechChallengeFiapConsumerEdit\obj\Debug\net8.0\TechChallengeFiapConsumerUpdate.dll
 E:\tech\TechChallengeFiapConsumerEdit\obj\Debug\net8.0\refint\TechChallengeFiapConsumerUpdate.dll
 E:\tech\TechChallengeFiapConsumerEdit\obj\Debug\net8.0\TechChallengeFiapConsumerUpdate.pdb
 E:\tech\TechChallengeFiapConsumerEdit\obj\Debug\net8.0\TechChallengeFiapConsumerUpdate.genruntimeconfig.cache
 E:\tech\TechChallengeFiapConsumerEdit\obj\Debug\net8.0\ref\TechChallengeFiapConsumerUpdate.dll
+E:\tech\TechChallengeFiapConsumerEdit\obj\Debug\net8.0\TechChal.E2EF06C5.Up2Date

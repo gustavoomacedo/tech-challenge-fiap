@@ -15,6 +15,17 @@
 		<DockerfileContext>.</DockerfileContext>
 	</PropertyGroup>
 
+	<ItemGroup>
+	  <Compile Remove="DockerRabbit\**" />
+	  <Compile Remove="DockerSqlServer\**" />
+	  <Content Remove="DockerRabbit\**" />
+	  <Content Remove="DockerSqlServer\**" />
+	  <EmbeddedResource Remove="DockerRabbit\**" />
+	  <EmbeddedResource Remove="DockerSqlServer\**" />
+	  <None Remove="DockerRabbit\**" />
+	  <None Remove="DockerSqlServer\**" />
+	</ItemGroup>
+
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.10" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.10">

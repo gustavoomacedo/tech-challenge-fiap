@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-consulta
+  namespace: techchallenge
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api-consulta
+  template:
+    metadata:
+      labels:
+        app: api-consulta
+    spec:
+      containers:
+      - name: api-consulta
+        image: tech-challenge-consulta
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 8080
+        env:
+        - name: ASPNETCORE_ENVIRONMENT
+          value: Production
