@@ -3,8 +3,6 @@ kind: Deployment
 metadata:
   name: rabbitmq
   namespace: techchallenge
-  labels:
-    app: rabbitmq
 spec:
   replicas: 1
   selector:

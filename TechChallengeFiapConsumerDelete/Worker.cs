@@ -24,10 +24,19 @@ public class Worker : BackgroundService
 
         var factory = new ConnectionFactory()
         {
-            HostName = "rabbitmq", // Nome do serviço no docker-compose.yml
+            HostName = "localhost", // Pelo kubernets
             UserName = "guest",
-            Password = "guest"
+            Password = "guest",
+            Port = 5672 // Porta padrão do RabbitMQ
         };
+
+        //docker compose
+        // var factory = new ConnectionFactory()
+        //{
+        //    HostName = "rabbitmq", // Nome do serviço no docker-compose.yml
+        //    UserName = "guest",
+        //    Password = "guest"
+        //};
 
         _connection = factory.CreateConnection();
         _channel = _connection.CreateModel();

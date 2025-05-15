@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: sqlserver
-          image: custom-sqlserver:latest  # sua imagem personalizada
+          image: custom-sqlserver:dev  # sua imagem personalizada
           imagePullPolicy: Never
           ports:
             - containerPort: 1433
