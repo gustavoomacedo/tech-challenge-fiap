@@ -4,7 +4,7 @@ metadata:
   name: api-add
   namespace: techchallenge
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: api-add
@@ -14,11 +14,11 @@ spec:
         app: api-add
     spec:
       containers:
-      - name: api-add
-        image: tech-challenge-add
-        imagePullPolicy: Never
-        ports:
-        - containerPort: 8080
-        env:
-        - name: ASPNETCORE_ENVIRONMENT
-          value: Production
+        - name: api-add
+          image: tech-challenge-add
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8080
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              value: Production

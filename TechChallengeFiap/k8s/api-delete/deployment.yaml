@@ -22,3 +22,30 @@ spec:
           env:
             - name: ASPNETCORE_ENVIRONMENT
               value: "Production"
+
+             # SQL Server
+            - name: SQLSERVER_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: app-config
+                  key: SQLSERVER_HOST
+            - name: SQLSERVER_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: app-config
+                  key: SQLSERVER_PORT
+            - name: SQLSERVER_USER
+              valueFrom:
+                configMapKeyRef:
+                  name: app-config
+                  key: SQLSERVER_USER
+            - name: SQLSERVER_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  name: app-config
+                  key: SQLSERVER_PASSWORD
+            - name: SQLSERVER_DATABASE
+              valueFrom:
+                configMapKeyRef:
+                  name: app-config
+                  key: SQLSERVER_DATABASE

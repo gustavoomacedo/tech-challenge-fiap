@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config
+  namespace: techchallenge
+data:
+  SQLSERVER_HOST: "sqlserver"           # nome do serviço SQL no cluster
+  SQLSERVER_PORT: "1433"
+  SQLSERVER_USER: "sa"
+  SQLSERVER_PASSWORD: "YourStrong!Passw0rd"
+  SQLSERVER_DATABASE: "ContactDB"
+
+  # RabbitMQ
+  RABBITMQ_DEFAULT_USER: guest
+  RABBITMQ_DEFAULT_PASS: guest
+  RABBITMQ_HOST: rabbitmq
+  RABBITMQ_PORT: "5672"

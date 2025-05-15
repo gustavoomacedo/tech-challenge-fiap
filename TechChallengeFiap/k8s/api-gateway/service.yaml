@@ -4,9 +4,10 @@ metadata:
   name: api-gateway
   namespace: techchallenge
 spec:
+  type: NodePort          # <== precisa disso para usar nodePort
   selector:
     app: api-gateway
   ports:
     - port: 8080
       targetPort: 8080
-      nodePort: 30887  # Expor via localhost:30889
+      nodePort: 30887    # porta externa exposta
