@@ -13,7 +13,7 @@ namespace TechChallengeFiap.Tests.Integration
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
-        public DbSet<ContactDto> Contact { get; set; }
+        public DbSet<Contact> Contact { get; set; }
     }
 
     public class DbTestFixture : IDisposable

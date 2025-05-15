@@ -16,7 +16,7 @@ namespace TechChallengeFiap.Tests.Integration
         public async Task AdicionarContato_DeveSalvarNoBanco()
         {
             // Arrange
-            var contato = new ContactDto
+            var contato = new Contact
             {
                 Name = "gabriel",
                 Email = "gabriel@example.com",

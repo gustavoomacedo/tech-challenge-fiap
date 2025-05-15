@@ -33,10 +33,10 @@ public class Program
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen(c =>
         {
-            c.SwaggerDoc("v1", new OpenApiInfo { Title = "Consulta de contatos por DDD", Version = "v1" });
+            c.SwaggerDoc("v1", new OpenApiInfo { Title = "Cadastro de contatos por DDD", Version = "v1" });
 
             var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-            var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile) ;
+            var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
             c.IncludeXmlComments(xmlPath);
         });
 
@@ -48,26 +48,21 @@ public class Program
                        .AllowAnyHeader());
         });
 
-
+        var connection = configuration.GetConnectionString("ConnectionString");
         builder.Services.AddDbContext<ApplicationDbContext>(options =>
         {
-            // Aqui você usa a string de conexão do seu banco de dados
-            options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+            options.UseSqlServer(connection);
+            options.UseLazyLoadingProxies();
         });
 
         var app = builder.Build();
 
-        // Aplica as Migrations automaticamente ao iniciar a aplicação
-        using (var scope = app.Services.CreateScope())
+        // Configure the HTTP request pipeline.
+        if (app.Environment.IsDevelopment())
         {
-            var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-            dbContext.Database.Migrate();  // Aplica as migrations pendentes
-        }
-
-
             app.UseSwagger();
             app.UseSwaggerUI();
-       
+        }
 
         /*INICIO DA CONFIGURAÇÃO - PROMETHEUS*/
         // Custom Metrics to count requests for each endpoint and the method

@@ -2,7 +2,7 @@
 
 namespace TechChallengeFiap.Models
 {
-    public class ContactDto : EntityBase
+    public class Contact : EntityBase
     {
         [Required(ErrorMessage = "O nome é obrigatório.")]
         [StringLength(100, ErrorMessage = "O nome não pode ter mais que 100 caracteres.")]

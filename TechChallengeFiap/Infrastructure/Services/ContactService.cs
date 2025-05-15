@@ -34,7 +34,7 @@ namespace TechChallengeFiap.Infrastructure.Services
                     throw new ArgumentNullException("DDD inválido.");
                 }
 
-                var contact = new ContactDto()
+                var contact = new Contact()
                 {
                     DDD = contactDTO.DDD,
                     Email = contactDTO.Email,
@@ -112,7 +112,7 @@ namespace TechChallengeFiap.Infrastructure.Services
 
         public async Task updateContactAsync(ContactUpdateRequestDTO contact)
         {
-            ContactDto contactEntity = await _contactRepository.GetById(contact.Id);
+            Contact contactEntity = await _contactRepository.GetById(contact.Id);
 
             if (contactEntity is null)
             {

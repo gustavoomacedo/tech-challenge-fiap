@@ -2,8 +2,8 @@
 
 namespace TechChallengeFiap.Interfaces
 {
-    public interface IContactRepository : IRepository<ContactDto>
+    public interface IContactRepository : IRepository<Contact>
     {
-        Task<ICollection<ContactDto>> GetContactsByDDD(int DDD);
+        Task<ICollection<Contact>> GetContactsByDDD(int DDD);
     }
 }
