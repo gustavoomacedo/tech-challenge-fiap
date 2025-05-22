@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using Prometheus;
 using System.Reflection;
 using TechChallengeFiapDelete.RabbitMQ;
 
@@ -25,7 +26,7 @@ public class Program
             c.SwaggerDoc("v1", new OpenApiInfo { Title = "Exclusão de contatos por DDD", Version = "v1" });
 
             var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-            var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile) ;
+            var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
             c.IncludeXmlComments(xmlPath);
         });
 
@@ -37,14 +38,30 @@ public class Program
                        .AllowAnyHeader());
         });
 
-
         var app = builder.Build();
 
+        app.UseSwagger();
+        app.UseSwaggerUI();
 
-            app.UseSwagger();
-            app.UseSwaggerUI();
-       
+        /*INICIO DA CONFIGURAÇÃO - PROMETHEUS*/
+        // Custom Metrics to count requests for each endpoint and the method
+        var counter = Metrics.CreateCounter("deletewebapimetric", "Counts DELETE requests to the WebApiMetrics API endpoints",
+            new CounterConfiguration
+            {
+                LabelNames = new[] { "method", "endpoint" }
+            });
 
+        app.Use((context, next) =>
+        {
+            counter.WithLabels(context.Request.Method, context.Request.Path).Inc();
+            return next();
+        });
+
+        // Use the prometheus middleware
+        app.UseMetricServer();
+        app.UseHttpMetrics();
+
+        /*FIM DA CONFIGURAÇÃO - PROMETHEUS*/
 
         app.UseAuthorization();
 

@@ -2,7 +2,17 @@ global:
   scrape_interval: 5s
 
 scrape_configs:
-  - job_name: "web-api-fiap-job"
+  - job_name: "api-add"
     metrics_path: /metrics
     static_configs:
-      - targets: ["192.168.0.25:8888"]
+      - targets: ["api-add:80"]
+
+  - job_name: "api-delete"
+    metrics_path: /metrics
+    static_configs:
+      - targets: ["api-delete:80"]
+
+  - job_name: "api-update"
+    metrics_path: /metrics
+    static_configs:
+      - targets: ["api-update:80"]

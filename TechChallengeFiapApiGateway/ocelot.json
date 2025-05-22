@@ -6,7 +6,7 @@
       "DownstreamHostAndPorts": [
         {
           "Host": "api-add",
-          "Port": 8080
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/contact/add",
@@ -26,7 +26,7 @@
       "DownstreamHostAndPorts": [
         {
           "Host": "api-delete",
-          "Port": 8080
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/contact/delete/{everything}",
@@ -46,7 +46,7 @@
       "DownstreamHostAndPorts": [
         {
           "Host": "api-update",
-          "Port": 8080
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/contact/update",

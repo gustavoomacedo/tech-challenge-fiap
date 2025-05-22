@@ -45,7 +45,7 @@ namespace TechChallengeFiapUpdate.Controllers
             catch (Exception ex)
             {
 
-                return StatusCode(500, $"Não foi possível processar a requisição: {ex.Message}");
+                return StatusCode(500, $"Não foi possível processar a requisição na fila: {ex.Message}");
             }
         }
     }

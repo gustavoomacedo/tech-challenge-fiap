@@ -44,7 +44,7 @@ namespace TechChallengeFiapAdd.Controllers
             }
             catch (Exception ex)
             {                
-                return StatusCode(500, $"Não foi possível adicionar esse contato: {ex.Message}");
+                return StatusCode(500, $"Não foi possível adicionar esse contato na fila: {ex.Message}");
             }
         }
 

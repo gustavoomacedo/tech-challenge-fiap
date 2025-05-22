@@ -28,3 +28,16 @@
 /TechChallengeFiapApiGateway/obj
 /TechChallengeFiap.Function/Properties/PublishProfiles
 /TechChallengeFiap.Function/Properties/ServiceDependencies/tech-challenge-fiap-2025 - Zip Deploy
+# Ignorar pastas padrão do .NET
+**/bin/
+**/obj/
+
+# Ignorar diretórios de build
+**/Debug/
+**/Release/
+
+# Ignorar arquivos temporários
+*.user
+*.suo
+*.log
+*.vs/
